@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【竹本_尚史】イラストポートフォリオ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>My Illustration Works</h1>
+        <p>制作実績をカテゴリ別にご覧いただけます。</p>
+    </header>
+
+    <main>
+        <div class="tabs">
+            <button class="tab-button active" data-target="insta-gallery">Instagramの投稿画像</button>
+            <button class="tab-button" data-target="poster-gallery">チラシ・ポスター</button>
+            <button class="tab-button" data-target="display-gallery">店頭ディスプレイ</button>
+        </div>
+
+        <section id="insta-gallery" class="gallery-section active">
+            <h2>Instagramの投稿画像</h2>
+     
+            <div class="gallery">
+                <div class="work-item" data-image="images/insta1.jpg" data-title="インスタ投稿例1" data-concept="ターゲット層に合わせた親しみやすい配色で作成。">
+                    <img src="images/insta1.jpg" alt="インスタ投稿1" class="thumbnail">
+                </div>
+                <div class="work-item" data-image="images/insta2.jpg" data-title="キャンペーン告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
+                    <img src="images/insta2.jpg" alt="インスタ投稿2" class="thumbnail">
+                </div>
+                </div>
+        </section>
+
+        <section id="poster-gallery" class="gallery-section">
+            <h2>チラシ・ポスター</h2>
+            <div class="gallery">
+                <div class="work-item" data-image="images/poster1_large.jpg" data-title="A4サイズ イベント告知ポスター" data-concept="遠くからでも目を引くような大胆なレイアウトと配色を採用。">
+                    <img src="images/poster1_thumb.jpg" alt="ポスター1" class="thumbnail">
+                </div>
+                </div>
+        </section>
+
+        <section id="display-gallery" class="gallery-section">
+            <h2>店頭ディスプレイ</h2>
+            <div class="gallery">
+                <div class="work-item" data-image="images/display1_large.jpg" data-title="等身大パネルデザイン" data-concept="商品イメージとキャラクターの親和性を高めるデザインを意識。">
+                    <img src="images/display1_thumb.jpg" alt="ディスプレイ1" class="thumbnail">
+                </div>
+                </div>
+        </section>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <img id="modal-image" src="" alt="拡大画像">
+                <h2 id="modal-title"></h2>
+                <p id="modal-concept"></p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
