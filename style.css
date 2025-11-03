@@ -56,22 +56,34 @@ header {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.9); /* 半透明の黒い背景 */
     padding-top: 60px;
+
+   
+    /* 画面全体で中央寄せにするための設定 */
+    display: flex; /* 追加 */
+    justify-content: center; /* 追加 */
+    align-items: center; /* 追加 */
 }
 
 .modal-content {
     background-color: #fff;
-    margin: 5% auto; /* 上下中央寄せ */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 900px; /* 最大幅を設定 */
     position: relative;
     text-align: center;
+    
+    /* ⭐️ 変更点: 幅を画面に対して柔軟に設定 */
+    width: 90%; /* 画面幅の90%を使用 */
+    max-width: 900px; /* PCでの最大幅を少し広げる (任意) */
+    
+    /* ⭐️ 追加: 高さを画面に合わせ、はみ出す場合はスクロール可能にする */
+    max-height: 90vh; /* Viewport Height (画面高さ) の90%に制限 */
+    overflow-y: auto; /* 高さ制限を超えた場合のみ縦スクロール可能 */
 }
 
 #modal-image {
-    max-width: 75%;
+    max-width: 100%;
     height: auto;
+    
 }
 
 .close-btn {
