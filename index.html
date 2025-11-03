@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【竹本_尚史】イラストポートフォリオ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>My Illustration Works</h1>
+        <p>制作実績をカテゴリ別にご覧いただけます。</p>
+    </header>
+
+    <main>
+        <div class="tabs">
+            <button class="tab-button active" data-target="insta-gallery">Instagramの投稿画像</button>
+            <button class="tab-button" data-target="poster-gallery">チラシ・ポスター</button>
+            <button class="tab-button" data-target="display-gallery">店頭ディスプレイ</button>
+        </div>
+
+        <section id="insta-gallery" class="gallery-section active">
+            <h2>Instagramの投稿画像</h2>
+     
+            <div class="gallery">
+                <div class="work-item" data-image="images/insta1.jpg" data-title="端午の節句の限定商品の紹介" data-concept="販売開始の告知及び予約方法をシンプルなデザインで端的に。">
+                    <img src="images/insta1.jpg" alt="インスタ投稿1" class="thumbnail">
+                </div>
+                <div class="work-item" data-image="images/insta2.jpg" data-title="ハロウィンイベント告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
+                    <img src="images/insta2.jpg" alt="インスタ投稿2" class="thumbnail">
+                </div>
+                 <div class="work-item" data-image="images/insta3.jpg" data-title="閉店セール告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
+                    <img src="images/insta3.jpg" alt="インスタ投稿3" class="thumbnail">
+                </div>
+                 <div class="work-item" data-image="images/insta4.jpg" data-title="新商品告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
+                    <img src="images/insta4.jpg" alt="インスタ投稿4" class="thumbnail">
+                </div>
+            </div>
+        </section>
+
+        <section id="poster-gallery" class="gallery-section">
+            <h2>チラシ・ポスター</h2>
+            <div class="gallery">
+                <div class="work-item" data-image="images/poster1.jpg" data-title="メニュー表" data-concept="海外の方も多く来る現場用に英訳も表示">
+                    <img src="images/poster1.jpg" alt="ポスター1" class="thumbnail">
+                </div>
+                 <div class="work-item" data-image="images/poster2.jpg" data-title="催事用商品ポスター" data-concept="遠くからでも目を引くような大胆なレイアウトと配色を採用。">
+                    <img src="images/poster2.jpg" alt="ポスター2" class="thumbnail">
+                </div>
+                 <div class="work-item" data-image="images/poster3.jpg" data-title="店頭用夏季限定商品ポスター" data-concept="遠くからでも目を引くような大胆なレイアウトと配色を採用。">
+                    <img src="images/poster3.jpg" alt="ポスター3" class="thumbnail">
+                </div>
+                 <div class="work-item" data-image="images/poster4.jpg" data-title="店舗情報チラシ" data-concept="遠くからでも目を引くような大胆なレイアウトと配色を採用。">
+                    <img src="images/poster4.jpg" alt="ポスター4" class="thumbnail">
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="display-gallery" class="gallery-section">
+            <h2>店頭ディスプレイ</h2>
+            <div class="gallery">
+                <div class="work-item" data-image="images/tv1.jpg" data-title="商品メニュー" data-concept="商品イメージとキャラクターの親和性を高めるデザインを意識。">
+                    <img src="images/tv1.jpg" alt="ディスプレイ1" class="thumbnail">
+                </div>
+                 <div class="work-item" data-image="images/tv2.jpg" data-title="バレンタイン限定商品告知" data-concept="商品イメージとキャラクターの親和性を高めるデザインを意識。">
+                    <img src="images/tv2.jpg" alt="ディスプレイ2" class="thumbnail">
+                </div>
+                 <div class="work-item" data-image="images/tv3.jpg" data-title="限定商品告知" data-concept="商品イメージとキャラクターの親和性を高めるデザインを意識。">
+                    <img src="images/tv3.jpg" alt="ディスプレイ3" class="thumbnail">
+                </div>
+                 <div class="work-item" data-image="images/tv4.jpg" data-title="イベント告知" data-concept="商品イメージとキャラクターの親和性を高めるデザインを意識。">
+                    <img src="images/tv4.jpg" alt="ディスプレイ4" class="thumbnail">
+                </div>
+            </div>
+        </section>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <img id="modal-image" src="" alt="拡大画像">
+                <h2 id="modal-title"></h2>
+                <p id="modal-concept"></p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
