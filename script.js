@@ -54,18 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
             modalConcept.textContent = concept;
 
             // モーダルを表示
-            modal.style.display = 'block';
+           modal.classList.add('is-active'); // <-- 追加
         });
     });
 
     // モーダルを閉じる処理
     closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
+        modal.classList.remove('is-active'); // <-- 追加
     });
 
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
-            modal.style.display = 'none';
+            modal.classList.remove('is-active'); // <-- 追加
         }
     });
 });

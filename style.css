@@ -63,6 +63,10 @@ header {
     align-items: center; /* 追加 */
 }
 
+.modal.is-active {
+    display: flex; 
+}
+
 .modal-content {
     background-color: #fff;
     padding: 20px;
