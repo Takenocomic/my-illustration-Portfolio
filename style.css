@@ -53,9 +53,8 @@ header {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0, 0, 0, 0.9); /* 半透明の黒い背景 */
-    padding-top: 60px;
+    
 
    
     /* 画面全体で中央寄せにするための設定 */
