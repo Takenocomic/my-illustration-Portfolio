@@ -72,15 +72,17 @@ header {
     
     /* ⭐️ 変更点: 幅を画面に対して柔軟に設定 */
     width: 90%; /* 画面幅の90%を使用 */
-    max-width: 900px; /* PCでの最大幅を少し広げる (任意) */
+    max-width: 600px; /* PCでの最大幅を少し広げる (任意) */
     
     /* ⭐️ 追加: 高さを画面に合わせ、はみ出す場合はスクロール可能にする */
-    max-height: 90vh; /* Viewport Height (画面高さ) の90%に制限 */
+    max-height: 80vh; /* Viewport Height (画面高さ) の80%に制限 */
     overflow-y: auto; /* 高さ制限を超えた場合のみ縦スクロール可能 */
 }
 
 #modal-image {
     max-width: 100%;
+    /* ⭐️ 追加：画像の高さを厳しく制限し、モーダルコンテナの高さを超えないようにする */
+    max-height: 50vh; 
     height: auto;
     
 }
