@@ -55,12 +55,6 @@ header {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9); /* 半透明の黒い背景 */
     
-
-   
-    /* 画面全体で中央寄せにするための設定 */
-    display: flex; /* 追加 */
-    justify-content: center; /* 追加 */
-    align-items: center; /* 追加 */
 }
 
 .modal.is-active {
