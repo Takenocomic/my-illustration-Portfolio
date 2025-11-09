@@ -1,0 +1,101 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* 落ち着いた背景色 */
+    color: #333;
+}
+
+
+header {
+    color: rgba(0, 0, 0, 1);
+    padding: 20px;
+}
+
+
+
+.js-work-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+}
+/*1.ダークモード*/
+.feature-demo {
+    margin-top: 20px;
+    padding: 0 15px;
+}
+
+.tech-notes {
+    margin-top: 20px;
+    padding: 0 15px;
+}
+
+
+/*2.テキストカウンター*/
+
+
+.text-counter-container {
+    margin-top: 20px;
+}
+
+.text-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;/* 垂直方向のみリサイズ可能 */
+    box-sizing: border-box; /* paddingやborderを幅に含める */
+    transition: border-color 0.3s;
+}
+
+.text-input:focus {
+    border-color: #007bff; /* フォーカス時に青い線を表示 */
+    outline: none;
+}
+
+.counter-display {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+#char-count {
+    font-weight: bold;
+    color: #007bff; /* 文字数部分を強調 */
+}
+
+/* ================================= */
+/* ⭐️ ダークモード用のスタイル定義 ⭐️ */
+/* body要素に .dark-mode クラスが付いた時に適用されるスタイル */
+/* ================================= */
+body.dark-mode .js-work-section {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .text-input {
+    background-color: #333;
+    color: #f0f0f0;
+    border-color: #555;
+}
+
+body.dark-mode .counter-display {
+    color: #ccc;
+}
+
+body.dark-mode {
+    background-color: #121212; /* 全体の背景色を暗く */
+    color: #f0f0f0; /* 全体の文字色を明るく */
+}
+
+/* ヘッダー */
+body.dark-mode header {
+    background-color: #121212;
+    color: #f0f0f0;
+    border-bottom: 0px solid #333;
+}
