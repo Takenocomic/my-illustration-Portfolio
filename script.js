@@ -68,4 +68,51 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.classList.remove('is-active'); // <-- 追加
         }
     });
+
+
+    // ------------------------------------------------
+    // 3. ダークモード切り替え機能の実装 (新規)
+    // ------------------------------------------------
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const darkModeClass = 'dark-mode';
+    const storageKey = 'themeMode';
+
+    // **A. テーマ切り替え処理の関数**
+    function toggleTheme() {
+        // body要素に 'dark-mode' クラスを追加/削除する
+        body.classList.toggle(darkModeClass);
+        
+        // 現在の状態を LocalStorage に保存する
+        if (body.classList.contains(darkModeClass)) {
+            localStorage.setItem(storageKey, 'dark');
+            themeToggle.textContent = '🌙 ダークモード';
+            themeToggle.setAttribute('aria-pressed', 'true');
+        } else {
+            localStorage.setItem(storageKey, 'light');
+            themeToggle.textContent = '🌞 ライトモード';
+            themeToggle.setAttribute('aria-pressed', 'false');
+        }
+    }
+
+    // **B. ページロード時の初期設定**
+    // LocalStorageに保存されたテーマ設定を読み込む
+    const storedTheme = localStorage.getItem(storageKey);
+
+    // 1. 保存された設定があればそれを適用する
+    if (storedTheme === 'dark') {
+        body.classList.add(darkModeClass);
+        themeToggle.textContent = '🌙 ダークモード';
+        themeToggle.setAttribute('aria-pressed', 'true');
+    } else {
+        // 2. 設定がない、または'light'の場合はライトモードを初期表示
+        themeToggle.textContent = '🌞 ライトモード';
+        themeToggle.setAttribute('aria-pressed', 'false');
+    }
+    
+    // **C. ボタンクリックイベント**
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+
 });

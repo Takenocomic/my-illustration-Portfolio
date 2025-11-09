@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 成果物一覧 - ポートフォリオ</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="js-style.css"> 
+    </head>
+<body>
+
+    <header>
+        <h1>JavaScript Works</h1>
+        <p>JavaScriptで実装した機能のデモンストレーションです。</p>
+        <nav>
+            <a href="index.html">イラスト作品へ戻る</a> 
+        </nav>
+    </header>
+
+    <main>
+        <section class="js-showcase">
+            <h2>1. ダークモード切り替え</h2>
+            <div class="feature-demo">
+                <button id="theme-toggle-btn">テーマ切り替え</button>
+                <p>このボタンでサイト全体の配色（ダーク/ライト）が切り替わります。</p>
+            </div>
+            
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**DOM操作**：ボタンクリックイベントの検出。</li>
+                    <li>**CSS変数** (`--main-bg-color`, `--main-text-color`) を使用して、一つのクラス切り替えで全体を制御。</li>
+                </ul>
+            </div>
+        </section>
+
+        </main>
+
+    <footer>
+        <p>&copy; 2024 Your Name</p>
+    </footer>
+
+    <script src="js-works.js"></script> 
+</body>
+</html>
