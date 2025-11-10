@@ -12,11 +12,14 @@ header {
     padding: 20px;
 }
 
+h2 {
+    margin :0px;
+}
 
 
 .js-work-section {
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 40px auto 40px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -24,9 +27,24 @@ header {
 }
 /*1.ダークモード*/
 .feature-demo {
-    margin-top: 20px;
-    padding: 0 15px;
+    padding: 10px 20px 10px;
 }
+
+#theme-toggle-btn {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+#theme-toggle-btn:hover {
+    background-color: #ddd;
+}
+
 
 .tech-notes {
     margin-top: 20px;
@@ -44,12 +62,14 @@ header {
 .text-input {
     width: 100%;
     padding: 15px;
+    margin: 15px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;/* 垂直方向のみリサイズ可能 */
     box-sizing: border-box; /* paddingやborderを幅に含める */
     transition: border-color 0.3s;
+
 }
 
 .text-input:focus {
@@ -59,7 +79,7 @@ header {
 
 .counter-display {
     text-align: right;
-    margin-top: 10px;
+    margin: 10px auto 15px auto;
     font-size: 14px;
     color: #555;
 }
@@ -73,6 +93,16 @@ header {
 /* ⭐️ ダークモード用のスタイル定義 ⭐️ */
 /* body要素に .dark-mode クラスが付いた時に適用されるスタイル */
 /* ================================= */
+body.dark-mode #theme-toggle-btn {
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+body.dark-mode #theme-toggle-btn:hover {
+     background-color: #555;
+}
+
 body.dark-mode .js-work-section {
     background-color: #1e1e1e;
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
