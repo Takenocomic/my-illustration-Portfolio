@@ -89,6 +89,42 @@ h2 {
     color: #007bff; /* 文字数部分を強調 */
 }
 
+
+/* スライドショー*/
+.slideshow-container{
+    width : auto;
+    overflow: hidden; /* 枠外へのはみ出しを隠す */
+    height: 100px;
+    
+}
+
+.slideshow-track {
+    display: flex; /* 画像を横一列に並べる */
+    width: fit-content; /* /* トラックの幅をコンテンツ全体に合わせる（無限スクロールの必須設定） */
+    height: 100px; /* コンテナの高さに合わせる */
+    animation: headerScroll 60s linear infinite; /* アニメーション適用 */
+    
+}
+
+.slideshow-track:hover {
+    animation-play-state: paused; /* ホバーで一時停止 */
+}
+
+.slideshow-track img {
+    height: 100%; /* 親（トラック）の高さに合わせる */
+    width: auto; /* 縦横比を保つ */
+    object-fit: cover; /* はみ出す部分を切り抜き、領域全体を覆う */
+    filter: brightness(0.8); /* 文字の視認性向上のため暗く */
+    flex-shrink: 0; /* 画像が縮まないようにする */
+}
+
+/* ⭐️ アニメーションの定義 ⭐️ */
+@keyframes headerScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); } /* JSでコンテンツを複製しているため、元の幅の50%だけ移動 */
+}
+
+
 /* ================================= */
 /* ⭐️ ダークモード用のスタイル定義 ⭐️ */
 /* body要素に .dark-mode クラスが付いた時に適用されるスタイル */
@@ -121,6 +157,10 @@ body.dark-mode .counter-display {
 body.dark-mode {
     background-color: #121212; /* 全体の背景色を暗く */
     color: #f0f0f0; /* 全体の文字色を明るく */
+}
+
+body.dark-mode .slideshow-track img{
+    filter: brightness(0.5); /* ダークモードではさらに暗く */
 }
 
 /* ヘッダー */

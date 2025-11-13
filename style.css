@@ -6,34 +6,92 @@ body {
     color: #333;
 }
 
-.header-content{
-    display: block;
+header {
+    text-align: center;
     position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 0;/* ヘッダーのパディングは内部要素で調整 */
+    height: 30vh;
+}
+
+.header-content{
+    position: absolute;
+    top :0;
+    left :0;
+    width: 100%;
+    height: 100%;/* 親要素の高さに合わせる */
+    display: flex;/* 文字とボタンを中央に配置 */
+    flex-direction: column;/* 縦方向に並べる */
+    justify-content: center;/* 縦方向中央寄せ */
+    align-items: center;/* 横方向中央寄せ */
+    z-index: 10; /* スライドショーより手前に表示 */
+    pointer-events: none; /* 下の画像クリックを防ぐため */
 }
 
 .header-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    color: rgba(253, 250, 250, 0.9);
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);/* 文字の視認性を上げる影 */
+    pointer-events: auto;/* 文字部分はクリックできるように戻す */
+    padding: 20px;
 }
 
-.header-image {
-    display: block;
-    width: 100%;
-    height: 30vh;
-    object-fit: cover;
-    margin-top: 0px;
-    filter: brightness(0.8);
+.header-text h1 {
+    font-size: 2.5em; /* フォントサイズ調整 */
+    margin-bottom: 10px;
 }
+
+.header-text p {
+    font-size: 1.2em;
+}
+
+
+/* -------------------------------------- */
+/* ⭐️ ヘッダースライドショーのスタイル ⭐️ */
+/* -------------------------------------- */
+.header-slideshow-container {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;/* headerの高さに合わせる */
+}
+
+.header-slideshow-track {
+    display: flex; /* 画像を横一列に並べる */
+    width: fit-content; /* 画像の総幅に合わせる（JSで複製するため無限に伸びる） */
+    height: 100%; /* コンテナの高さに合わせる */
+    animation: headerScroll 60s linear infinite; /* アニメーション適用 */
+}
+
+.header-slideshow-track:hover {
+    animation-play-state: paused; /* ホバーで一時停止 */
+}
+
+.header-slideshow-track img {
+    height: 100%; /* 親（トラック）の高さに合わせる */
+    width: auto; /* 縦横比を保つ */
+    object-fit: cover; /* はみ出す部分を切り抜き、領域全体を覆う */
+    filter: brightness(0.5); /* 文字の視認性向上のため暗く */
+    flex-shrink: 0; /* 画像が縮まないようにする */
+}
+
+/* ⭐️ アニメーションの定義 ⭐️ */
+@keyframes headerScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); } /* JSでコンテンツを複製しているため、元の幅の50%だけ移動 */
+}
+
+
 
 /* イラストとJavaScriptの成果物タグ　*/
 /* ナビゲーション用のCSSを追加 */
 .main-nav {
+    width: 100%;
     padding: 10px 20px;
-    background-color: #333; /* 背景色 */
+    background-color:rgba(51, 51, 51, 0.9); /* 背景色 */
     text-align: center;
+    z-index: 20;
 }
 
 .main-nav .nav-link {
@@ -198,8 +256,10 @@ h2 {
 /* ⭐️ ダークモード切り替えボタンのスタイル ⭐️ */
 /* ============================= */
 .theme-switch-container {
-    text-align: right; /* 右端に寄せる */
-    padding: 10px 20px 10px;
+    position: absolute; /* 絶対配置に変更 */
+    top: 10px; /* 上からの距離 */
+    right: 10px; /* 右からの距離 */
+    z-index: 20; /* 他の要素より手前に */
 }
 
 #theme-toggle {
@@ -231,6 +291,15 @@ body.dark-mode {
 body.dark-mode header {
     background-color: #1e1e1e;
     border-bottom: 1px solid #333;
+}
+
+body.dark-mode .header-slideshow-track img{
+    filter: brightness(0.3); /* ダークモードではさらに暗く */
+}
+
+body.dark-mode .header-text {
+    color: #f0f0f0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
 }
 
 /* 作品アイテム */

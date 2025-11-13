@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ... 既存のタブ切り替え機能、モーダル機能、ダークモード機能、テキストカウンター機能のコード ...
+
     // ------------------------------------------------
     // 1. タブ切り替え機能の実装
     // ------------------------------------------------
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // HTMLで最初の要素にactiveクラスを付けているため、ここでは特に処理は不要です。
 
     // ------------------------------------------------
-    // 2. モーダルウィンドウ機能の実装 (前回の内容)
+    // 2. モーダルウィンドウ機能の実装
     // ------------------------------------------------
     
     // 必要な要素の取得
@@ -71,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ------------------------------------------------
-    // 3. ダークモード切り替え機能の実装 (新規)
+    // 3. ダークモード切り替え機能の実装
     // ------------------------------------------------
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
@@ -115,4 +117,36 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.addEventListener('click', toggleTheme);
     }
 
+
+    // ------------------------------------------------
+    // 4 ヘッダー画像連結スライドショー機能 
+    // ------------------------------------------------
+    const workItemsForSlideshow = document.querySelectorAll('.work-item');
+    const allImages = Array.from(workItemsForSlideshow).map(item => 
+    item.getAttribute('data-image')
+    );
+    const headerSlideshowTrack =document.getElementById('header-slideshow-track');
+
+   
+    if (headerSlideshowTrack && allImages.length > 0){
+        // 1. オリジナルの画像をトラックに追加
+        allImages.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = '作品スライド';
+            headerSlideshowTrack.appendChild(img);
+        });
+
+        // 2. スライドショーを無限ループさせるために、コンテンツを複製して追加
+        //    元のコンテンツの幅だけスクロールさせるとループするようにするため、
+        //    少なくとも2倍のコンテンツが必要。今回はすべてをもう一度複製。
+        
+        allImages.forEach(src => {
+            const img =document.createElement('img');
+            img.src = src;
+            img.alt = '作品スライド(複製)';
+            headerSlideshowTrack.appendChild(img);
+        });
+
+    }
 });

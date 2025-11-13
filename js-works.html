@@ -46,6 +46,28 @@
 
         </section>
 
+        <section class="js-work-section">
+            <h2>3. スライドショー</h2>
+            <div class="slideshow-container" id="slideshow-container">
+                <div class="slideshow-track" id="slideshow-track">
+                
+                </div>
+            </div>
+
+            <div class="feature-demo">
+                <p>ヘッダーに配置されたイラスト画像が無限に横にスクロールし続けます。</p>
+                <p>ホバーするとアニメーションが一時停止します。</p>
+            </div>
+            
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**JavaScript**：スライドショーを無限ループさせるため、表示したい画像セットをトラック要素内に**複製して**追加しています。</li>
+                    <li>**CSS (`@keyframes`)**：複製によりコンテンツ全体の幅が元の2倍になっていることを利用し、**幅の50%**だけ移動するアニメーションを無限ループで適用しています。</li>
+                    <li>**CSS (`flex`)**：画像要素を横一列に並べ、アニメーションでトラック全体を移動させています。</li>
+                </ul>
+            </div>
+        </section>
 
         </main>
 

@@ -64,4 +64,38 @@ document.addEventListener('DOMContentLoaded',()=>{
         // 初期表示を確実にするため実行
         updateCounter();
     }
+
+
+    // ------------------------------------------------
+    // 3. ヘッダー画像連結スライドショー機能 
+    // ------------------------------------------------
+    
+    // index.htmlで使用している全作品の画像URLを直接リスト化
+    // (js-works.htmlには .work-item が存在しないため、ここで定義します)
+    const allImages = [
+        'images/insta1.jpg', 'images/insta2.jpg', 'images/insta3.jpg', 'images/insta4.jpg',
+        'images/poster1.jpg', 'images/poster2.jpg', 'images/poster3.jpg', 'images/poster4.jpg',
+        'images/tv1.jpg', 'images/tv2.jpg', 'images/tv3.jpg', 'images/tv4.jpg'
+    ];
+    const slideshowTrack =document.getElementById('slideshow-track');
+
+    if (slideshowTrack && allImages.length > 0) {
+        // 1. オリジナルの画像をトラックに追加
+        allImages.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = '作品スライド';
+            slideshowTrack.appendChild(img);
+        });
+
+        // 2. スライドショーを無限ループさせるために、コンテンツを複製して追加
+        //    元のコンテンツの幅だけスクロールさせるとループするようにするため、複製が必要です。
+        allImages.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = '作品スライド(複製)';
+            slideshowTrack.appendChild(img);
+        });
+    }
+
 });
