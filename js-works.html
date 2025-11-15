@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="js-style.css"> 
     </head>
 <body>
+    <div id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
 
     <header>
         <h1>JavaScript Works</h1>
@@ -36,6 +39,9 @@
 
         <section class="js-work-section">
             <h2>2. リアルタイム文字数カウンター</h2>
+            <div class="feature-demo">
+                <p>下のテキストエリアに文字を入力すると、その文字数を計測します。</p>
+            </div>
 
             <div class="text-counter-container">
                 <textarea id="text-input" class="text-input" rows="5" placeholder="ここに文字を入力してください．．．"></textarea>
@@ -69,7 +75,46 @@
             </div>
         </section>
 
-        </main>
+
+        <section class="js-work-section">
+            <h2>4. スクロール時の要素フェードイン機能</h2>
+
+            <div class="feature-demo">
+                <p>画面を下にスクロールすると、各セクションが下から滑らかにフェードインして表示されます。</p>
+                <p>一度表示された要素は、それ以降アニメーションを繰り返しません。</p>
+            </div>
+            
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**Intersection Observer API**：セクション要素がブラウザのビューポート（画面領域）と**交差**（Intersection）したかどうかを非同期的に監視するために使用します。</li>
+                    <li>**監視（Observe）**：要素が画面内に**20%** (`threshold: 0.2`) 入ったのを検出すると、JavaScript側の処理が実行されます。</li>
+                    <li>**CSSアニメーション**：交差が検出された後、JavaScriptが要素に **`appear`** クラスを付与します。このクラスが付与されると、CSSの `transition` (`opacity` と `transform`) が発動し、フェードインの動きが実現します。</li>
+                    <li>**監視の停止（Unobserve）**：アニメーションが一度完了したら、`observer.unobserve()` を実行して監視を停止し、処理の負荷を軽減しています。</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section class="js-work-section">
+            <h2>5. ローディングアニメーション</h2>
+            <div class="feature-demo">
+                <p>ページ内のすべてのリソース（画像、CSS、JSなど）の読み込みが完了するまで、画面全体を覆うローディング表示を行います。</p>
+                <p>読み込み完了後は、滑らかにフェードアウトしてコンテンツを表示します。</p>
+            </div>
+            
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**HTML/CSS（表示）**：`position: fixed` と高い `z-index` を使用して、ローディング要素を画面全体に固定し、他のコンテンツの**一番手前**に表示させています。</li>
+                    <li>**CSS (`@keyframes`)**：ローディング中の**円の回転アニメーション**は、`@keyframes` の `spin` で定義し、`transform: rotate(360deg)` を無限ループさせて実現しています。</li>
+                    <li>**JavaScript (`window.onload`)**：HTMLやCSSだけでなく、**全ての外部リソース（画像など）の読み込みが完了**するのを待つために `window.onload` イベントを使用しています。</li>
+                    <li>**JavaScript/CSS（非表示）**：`window.onload` が発火した後、JavaScriptでローディング要素に `hidden` クラスを付与します。このクラスの `opacity: 0` と `visibility: hidden` がCSSの `transition` によって**フェードアウト**の動きを生み出します。</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
         <p>&copy; 2025 Naofumi Takemoto</p>

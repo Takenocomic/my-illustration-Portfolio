@@ -6,6 +6,42 @@ body {
     color: #333;
 }
 
+#loader-wrapper {
+    position: fixed;/* 画面に固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* 背景色 */
+    z-index: 9999; /* 他の要素より手前に表示 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+    visibility: visible;
+}
+/* 読み込み完了後に適用されるクラス */
+#loader-wrapper.hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+/* スピナー（円形の回転アニメーション）のスタイル */
+.loader{
+    border: 8px solid #f3f3f3;/* ライトグレーの円 */
+    border-top: 8px solid #007dff;/* 青色の回転部分 */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1.5s linear infinite;/* 1.5秒で無限に回転 */
+}
+/* スピナーのアニメーション定義 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg);}
+}
+
+
 
 header {
     color: rgba(0, 0, 0, 1);
@@ -23,7 +59,19 @@ h2 {
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    /* 初期状態: 非表示（透明）で、少し下に位置をずらす */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;/* アニメーション時間を設定 */
+}
+
+/* ⭐️ アニメーション適用後の状態 ⭐️ */
+.js-work-section.appear {
+    /* appearクラスが付与されたら、完全に表示され、定位置に戻る */
+    opacity: 1;
+    transform: translateY(0);
 }
 /*1.ダークモード*/
 .feature-demo {
@@ -129,6 +177,15 @@ h2 {
 /* ⭐️ ダークモード用のスタイル定義 ⭐️ */
 /* body要素に .dark-mode クラスが付いた時に適用されるスタイル */
 /* ================================= */
+body.dark-mode #loader-wrapper {
+    background-color: #121212;
+}
+body.dark-mode .loader {
+    border: 8px solid #333;
+    border-top: 8px solid #00c0c0; /* ダークモードでの回転色 */
+}
+
+
 body.dark-mode #theme-toggle-btn {
     background-color: #444;
     color: #fff;

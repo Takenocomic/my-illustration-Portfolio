@@ -98,4 +98,58 @@ document.addEventListener('DOMContentLoaded',()=>{
         });
     }
 
+
+    // ------------------------------------------------
+    // 5. ローディングアニメーション機能の実装
+    // ------------------------------------------------
+    const loaderWrapper = document.getElementById('loader-wrapper');
+
+    // すべてのリソース（画像など）の読み込みが完了したときのイベント
+    // DOMContentLoaded が発火した後、さらに window.onload を待つことで全ての要素をカバー
+    window.onload = () => {
+        if (loaderWrapper) {
+            // CSSの hidden クラスを付与してフェードアウトさせる
+            loaderWrapper.classList.add('hidden');
+        }
+    };
+
+
+    // ------------------------------------------------
+    // 4. スクロール時の要素フェードイン機能の実装
+    // ------------------------------------------------
+    const sections = document.querySelectorAll('.js-work-section');
+    
+    // どの程度画面内に入ったら発火させるかの設定
+    // 0.2は「要素の20%が画面内に入ったら」という意味
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    };
+    
+    // Intersection Observer
+    const observer = new IntersectionObserver((entries, observer) =>{
+        entries.forEach(entry => {
+        // 要素がビューポート（画面）内に入った場合
+            if (entry.isIntersecting) {
+                entry.target.classList.add('appear');
+                // 一度アニメーションが完了したら、監視を停止してパフォーマンスを維持
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // すべてのセクションを監視対象に追加
+    sections.forEach((section, index) => {
+        // 最初のセクションは強制的に表示する 
+        // (セクション1は画面内にあるはずなので、アニメーションなしで表示)
+        if (index === 0){
+            section.classList.add('appear');
+        } else {
+            // 2番目以降のセクションを監視対象に追加
+            observer.observe(section);
+        }
+    });
+
+    
 });

@@ -147,6 +147,19 @@ document.addEventListener('DOMContentLoaded', () => {
             img.alt = '作品スライド(複製)';
             headerSlideshowTrack.appendChild(img);
         });
-
     }
+
+    // ------------------------------------------------
+    // 5. ローディングアニメーション機能の実装
+    // ------------------------------------------------
+    const loaderWrapper = document.getElementById('loader-wrapper');
+
+    // すべてのリソース（画像など）の読み込みが完了したときのイベント
+    // DOMContentLoaded が発火した後、さらに window.onload を待つことで全ての要素をカバー
+    window.onload = () => {
+        if (loaderWrapper) {
+            // CSSの hidden クラスを付与してフェードアウトさせる
+            loaderWrapper.classList.add('hidden');
+        }
+    };
 });
