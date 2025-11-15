@@ -104,10 +104,12 @@ body {
     margin-top: 20px;
 }
 
-.text-input {
+.text-input,
+textarea.text-input,
+input.text-input {
     width: 100%;
     padding: 15px;
-    margin: 15px;
+    margin: 15px auto;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -117,7 +119,9 @@ body {
 
 }
 
-.text-input:focus {
+.text-input:focus,
+textarea.text-input:focus,
+input.text-input:focuss {
     border-color: #007bff; /* フォーカス時に青い線を表示 */
     outline: none;
 }
@@ -201,6 +205,23 @@ body {
     font-weight: bold;
 }
 
+/*入力内容リセットボタン*/
+.reset-button {
+    background-color: #6c757d;/* グレー */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s;
+    margin: 10px 0;
+}
+
+.reset-button:hover {
+    background-color: #5a6268;
+}
+
 /* ================================= */
 /* ⭐️ ダークモード用のスタイル定義 ⭐️ */
 /* body要素に .dark-mode クラスが付いた時に適用されるスタイル */
@@ -229,7 +250,9 @@ body.dark-mode .js-work-section {
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
 }
 
-body.dark-mode .text-input {
+body.dark-mode .text-input,
+body.dark-mode textarea.text-input,
+body.dark-mode input.text-input {
     background-color: #333;
     color: #f0f0f0;
     border-color: #555;
@@ -260,4 +283,12 @@ body.dark-mode #email-input.input-success {
 }
 body.dark-mode #email-input.input-error {
     border-color: #ff6b6b; /* 失敗時の赤色を調整 */
+}
+
+/*入力内容リセットボタン*/
+body.dark-mode .reset-button {
+    background-color: #646464;
+}
+body.dark-mode .reset-button:hover {
+    background-color: #787878;
 }

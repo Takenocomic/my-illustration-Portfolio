@@ -52,6 +52,7 @@
                 <p class="counter-display">
                     現在の文字数: <span id="char-count">0</span> 文字
                 </p>
+                <button class="reset-button" data-target-id="text-input">入力内容をすべてリセット</button>
             </div>
 
         </section>
@@ -126,6 +127,7 @@
                 
                 <div class="validation-container">
                     <input type="text" id="email-input" class="text-input" placeholder="メールアドレスを入力してください">
+                    <button data-target-id="email-input" class="reset-button">入力内容をすべてリセット</button>
                     <p id="validation-feedback" class="feedback error-message"></p>
                 </div>
             </div>
@@ -148,13 +150,32 @@
                 <label for="remember-settings-checkbox">この設定を記憶する</label>
                 <p>チェックを入れた状態でページを再読み込みするか、ブラウザを閉じても、チェック状態が維持できます</p>
             </div>
-            
+
             <div class="tech-notes">
                 <h3>技術解説</h3>
                 <ul>
                     <li>**Local Storage**：ブラウザにデータを永続的に保存するためのWeb Storage APIの一つです。サーバーへ送られることなく、クライアント（ユーザーのPC）側でのみ利用されます。</li>
                     <li>**JavaScript (`setItem`, `getItem`)**：チェックボックスの状態が変更された際に `setItem` で状態を保存し、ページロード時に `getItem` で状態を読み出してチェックを復元します。</li>
                     <li>**データ型**：Local Storageは文字列しか保存できないため、チェック状態（`true` または `false`）を文字列として保存・読み出しの際に真偽値に変換して扱います。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="js-work-section">
+            <h2>8. 入力文字のリセットボタン</h2>
+            <div class="feature-demo">
+                <div class="reset-sample-container">
+                    <input type="text" id="reset-sample-input" class="text-input" placeholder="文字を入力してください．．．">
+                    <button data-target-id="reset-sample-input" class="reset-button">入力内容をすべてリセット</button>
+                </div>
+            </div>
+            
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**DOM要素の個別特定**：各ボタンに **`data-target-id`** というカスタム属性を設定し、クリックされたボタンのこの属性値を読み出すことで、どの入力フィールドをリセットするのかを**個別**に特定しています。</li>
+                    <li>**イベント委譲と一括処理**：`document.querySelectorAll('.reset-button')` でページ上の全てのリセットボタンを一括取得し、`forEach`で共通のイベントリスナーを設定しています。</li>
+                    <li>**状態の同期**：入力内容をクリアした後、既存の **`updateCounter()`** 関数を呼び出す、または検証メッセージのクラスを削除するなどして、**関連する表示要素の状態も同時に初期値に戻す**処理を行っています。</li>
                 </ul>
             </div>
         </section>

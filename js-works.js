@@ -221,4 +221,46 @@ document.addEventListener('DOMContentLoaded',()=>{
            localStorage.setItem(checkboxStorageKey, checkbox.checked.toString());
         });
     }
+
+
+    // ------------------------------------------------
+    // 8. 個別リセット機能の実装
+    // ------------------------------------------------
+
+    // すべてのリセットボタンを一括取得（クラス名で指定）
+    const individualResetButtons = document.querySelectorAll('.reset-button');
+
+    function resetIndividualInput(event) {
+        // ボタンが持っている data-target-id 属性の値（=リセット対象のID）を取得
+        const targetId = event.currentTarget.getAttribute('data-target-id');
+
+        // IDを使って対象の入力フィールドを取得
+        const targetInput = document.getElementById(targetId);
+
+        if (targetInput) {
+          // 1. 入力内容をクリア
+            targetInput.value = ''; 
+        }
+
+        // 2. フィードバックと表示のリセット
+        // a. 文字数カウンターのリセット (text-input の場合 ) 
+        if (targetId === 'text-input' && typeof updateCounter === 'function') {
+            updateCounter(); // 入力内容クリア後に再計算（結果は0になる）
+        }
+
+        // b. メールアドレス検証のフィードバックリセット (email-input の場合)
+        if (targetId === 'email-input') {
+            const feedbackElement = document.getElementById('validation-feedback');
+
+            targetInput.classList.remove('input-success', 'input-error');
+            if (feedbackElement) {
+                feedbackElement.classList.remove('success-message', 'error-message');
+                feedbackElement.textContent = ''; // メッセージをクリア
+            }
+        }       
+    }
+    // すべてのリセットボタンにイベントを設定
+    individualResetButtons.forEach(button => {
+        button.addEventListener('click', resetIndividualInput);
+    });
 });
