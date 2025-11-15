@@ -193,4 +193,32 @@ document.addEventListener('DOMContentLoaded',()=>{
         // ユーザーが入力するたびに validateEmail 関数を実行
         emailInput.addEventListener('input',validateEmail);
     }
+
+
+    // ------------------------------------------------
+    // 7. チェックボックスの状態記憶機能の実装 (新規追加)
+    // ------------------------------------------------
+    const checkbox = document.getElementById('remember-settings-checkbox');
+    const checkboxStorageKey = 'rememberCheckboxState';
+
+    if (checkbox) {
+        // **A. ページロード時の初期設定**
+        // Local Storageから保存された状態を読み込む
+        const storedState = localStorage.getItem(checkboxStorageKey);
+
+        if (storedState === 'true') {
+            // 保存された値が 'true' ならチェックを入れる
+            checkbox.checked = true;
+        } else {
+            // 保存された値が 'false' または何もなければ、チェックを外す
+            checkbox.checked = false;
+        }
+
+        // **B. 状態変更時の保存**
+        // チェックボックスの状態が変更されたら、Local Storageに保存する
+        checkbox.addEventListener('change',() => {
+           // チェックされているかどうかを文字列 ('true' or 'false') にして保存
+           localStorage.setItem(checkboxStorageKey, checkbox.checked.toString());
+        });
+    }
 });

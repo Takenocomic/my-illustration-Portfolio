@@ -140,6 +140,25 @@
             </div>
         </section>
 
+
+        <section class="js-work-section">
+            <h2>7. チェックボックスの状態記憶</h2>
+            <div class="feature-demo">
+                <input type="checkbox" id="remember-settings-checkbox">
+                <label for="remember-settings-checkbox">この設定を記憶する</label>
+                <p>チェックを入れた状態でページを再読み込みするか、ブラウザを閉じても、チェック状態が維持できます</p>
+            </div>
+            
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**Local Storage**：ブラウザにデータを永続的に保存するためのWeb Storage APIの一つです。サーバーへ送られることなく、クライアント（ユーザーのPC）側でのみ利用されます。</li>
+                    <li>**JavaScript (`setItem`, `getItem`)**：チェックボックスの状態が変更された際に `setItem` で状態を保存し、ページロード時に `getItem` で状態を読み出してチェックを復元します。</li>
+                    <li>**データ型**：Local Storageは文字列しか保存できないため、チェック状態（`true` または `false`）を文字列として保存・読み出しの際に真偽値に変換して扱います。</li>
+                </ul>
+            </div>
+        </section>
+
     </main>
 
     <footer>
