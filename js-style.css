@@ -1,19 +1,45 @@
-body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f8f8; /* 落ち着いた背景色 */
-    color: #333;
+/*
+ * ============================================
+ * 全体のリセットと基本スタイル
+ * ============================================
+ */
+:root {
+    /* ライトモードのメイン配色 (CSS変数で定義) */
+    --main-bg-color: #ffffff;
+    --main-text-color: #333333;
+    --section-bg-color: #f8f8f8;
+    --accent-color: #007bff;
+    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--section-bg-color); /* 背景色をセクション外の領域に設定 */
+    color: var(--main-text-color);
+    line-height: 1.6; /* 読みやすさ向上のため行間を広げる */
+}
+
+h1, h2, h3 {
+    color: var(--main-text-color);
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+/*
+ * ============================================
+ * ローディングアニメーション
+ * ============================================
+ */
 #loader-wrapper {
-    position: fixed;/* 画面に固定 */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #fff; /* 背景色 */
-    z-index: 9999; /* 他の要素より手前に表示 */
+    background-color: var(--main-bg-color);
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,197 +47,164 @@ body {
     transition: opacity 0.5s ease-out, visibility 0.5s;
     visibility: visible;
 }
-/* 読み込み完了後に適用されるクラス */
-#loader-wrapper.hidden{
+
+#loader-wrapper.hidden {
     opacity: 0;
     visibility: hidden;
 }
-/* スピナー（円形の回転アニメーション）のスタイル */
-.loader{
-    border: 8px solid #f3f3f3;/* ライトグレーの円 */
-    border-top: 8px solid #007dff;/* 青色の回転部分 */
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid var(--accent-color);
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    animation: spin 1.5s linear infinite;/* 1.5秒で無限に回転 */
+    animation: spin 1.5s linear infinite;
 }
-/* スピナーのアニメーション定義 */
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg);}
+    100% { transform: rotate(360deg); }
+}
+
+/*
+ * ============================================
+ * ヘッダーとナビゲーション
+ * ============================================
+ */
+header {
+    background-color: var(--main-bg-color);
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.header-text {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    color: var(--main-text-color);
+    text-shadow: none; /* 不要な影を削除 */
+}
+.header-text h1 {
+    font-size: 2.2em;
+}
+.header-text p {
+    font-size: 1.1em;
+    color: #666;
+}
+
+.main-nav {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    gap: 10px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    padding: 10px 15px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
 }
 
 
-.header-text {
-    color: rgba(0, 0, 0, 1);
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);/* 文字の視認性を上げる影 */
-    pointer-events: auto;/* 文字部分はクリックできるように戻す */
-    padding: 20px;
+/*
+ * ============================================
+ * メインコンテンツとセクション
+ * ============================================
+ */
+main {
+    padding-bottom: 50px; /* フッターとの間にスペースを確保 */
 }
 
 .js-work-section {
-    max-width: 1200px;
-    margin: 40px auto 40px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 1000px; /* メインコンテンツの幅を少し狭めて見やすく */
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--main-bg-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
 
-    /* 初期状態: 非表示（透明）で、少し下に位置をずらす */
+    /* フェードインアニメーションの初期状態 */
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;/* アニメーション時間を設定 */
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
-
-/* ⭐️ アニメーション適用後の状態 ⭐️ */
 .js-work-section.appear {
-    /* appearクラスが付与されたら、完全に表示され、定位置に戻る */
     opacity: 1;
     transform: translateY(0);
 }
-/*1.ダークモード*/
+
 .feature-demo {
-    padding: 10px 20px 10px;
+    padding: 10px 0;
+    border-left: 5px solid var(--accent-color); /* デモ部分を強調 */
+    padding-left: 15px;
+    margin: 20px 0;
+    background-color: #f0f0f0;
+    border-radius: 4px;
 }
 
+.tech-notes {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--section-bg-color);
+    border-radius: 8px;
+}
+
+.tech-notes h3 {
+    border-left: 3px solid var(--accent-color);
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+.tech-notes ul {
+    list-style: disc inside;
+    padding-left: 10px;
+}
+
+/*
+ * ============================================
+ * パーツスタイル (ボタン、入力欄、カウンター)
+ * ============================================
+ */
+
+/* 1. ダークモードボタン */
 #theme-toggle-btn {
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ccc;
-    padding: 15px 20px;
-    border-radius: 5px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 15px;
-    transition: all 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 10px;
 }
 
 #theme-toggle-btn:hover {
-    background-color: #ddd;
+    background-color: #0056b3;
+    transform: translateY(-1px);
 }
 
-
-.tech-notes {
-    margin-top: 20px;
-    padding: 0 15px;
-}
-
-
-/*テキストカウンター*/
-
-
-.text-counter-container {
-    margin-top: 20px;
-}
-
-.text-input,
-textarea.text-input,
-input.text-input {
-    width: 100%;
-    padding: 15px;
-    margin: 15px auto;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;/* 垂直方向のみリサイズ可能 */
-    box-sizing: border-box; /* paddingやborderを幅に含める */
-    transition: border-color 0.3s;
-
-}
-
-.text-input:focus,
-textarea.text-input:focus,
-input.text-input:focuss {
-    border-color: #007bff; /* フォーカス時に青い線を表示 */
-    outline: none;
-}
-
-.counter-display {
-    text-align: right;
-    margin: 10px auto 15px auto;
-    font-size: 14px;
-    color: #555;
-}
-
-#char-count {
-    font-weight: bold;
-    color: #007bff; /* 文字数部分を強調 */
-}
-
-
-/* スライドショー*/
-.slideshow-container{
-    width : auto;
-    overflow: hidden; /* 枠外へのはみ出しを隠す */
-    height: 100px;
-    
-}
-
-.slideshow-track {
-    display: flex; /* 画像を横一列に並べる */
-    width: fit-content; /* /* トラックの幅をコンテンツ全体に合わせる（無限スクロールの必須設定） */
-    height: 100px; /* コンテナの高さに合わせる */
-    animation: headerScroll 60s linear infinite; /* アニメーション適用 */
-    
-}
-
-.slideshow-track:hover {
-    animation-play-state: paused; /* ホバーで一時停止 */
-}
-
-.slideshow-track img {
-    height: 100%; /* 親（トラック）の高さに合わせる */
-    width: auto; /* 縦横比を保つ */
-    object-fit: cover; /* はみ出す部分を切り抜き、領域全体を覆う */
-    filter: brightness(0.8); /* 文字の視認性向上のため暗く */
-    flex-shrink: 0; /* 画像が縮まないようにする */
-}
-
-/* ⭐️ アニメーションの定義 ⭐️ */
-@keyframes headerScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); } /* JSでコンテンツを複製しているため、元の幅の50%だけ移動 */
-}
-
-
-/*フォーム検証機能のスタイル*/
-
-.validation-container {
-    padding: 10px 0;
-}
-
-/* フォームの枠線が成功/失敗に応じて変わるスタイル */
-#email-input.input-success {
-    border-color: #28a745; /* 緑色 (成功) */
-}
-
-#email-input.input-error {
-    border-color: #dc3545; /* 赤色 (失敗) */
-}
-
-/* フィードバックメッセージのスタイル */
-.feedback {
-    font-size: 14px;
-    margin-top: 5px;
-    height: 1.5em; /* メッセージの表示/非表示でレイアウトが崩れないように高さを確保 */
-}
-
-.success-message {
-    color: #28a745; /* 緑色 (成功) */
-}
-
-.error-message {
-    color: #dc3545; /* 赤色 (失敗) */
-    font-weight: bold;
-}
-
-/*入力内容リセットボタン*/
+/* 8. リセットボタン */
 .reset-button {
-    background-color: #6c757d;/* グレー */
+    background-color: #6c757d;
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 15px;
     transition: background-color 0.3s;
@@ -222,32 +215,217 @@ input.text-input:focuss {
     background-color: #5a6268;
 }
 
-/* ================================= */
-/* ⭐️ ダークモード用のスタイル定義 ⭐️ */
-/* body要素に .dark-mode クラスが付いた時に適用されるスタイル */
-/* ================================= */
-body.dark-mode #loader-wrapper {
-    background-color: #121212;
+/* 入力フィールド全般 */
+.text-input,
+textarea.text-input,
+input.text-input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0 ;
+    font-size: 16px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
-body.dark-mode .loader {
-    border: 8px solid #333;
-    border-top: 8px solid #00c0c0; /* ダークモードでの回転色 */
+
+.text-input:focus,
+textarea.text-input:focus,
+input.text-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* 2. 文字数カウンター */
+.counter-display {
+    text-align: right;
+    margin: 10px 0 15px 0;
+    font-size: 15px;
+    color: #666;
+}
+
+#char-count {
+    font-weight: bold;
+    color: var(--accent-color);
+    font-size: 1.1em;
+}
+
+/* 6. フォーム検証 */
+#email-input.input-success {
+    border-color: #28a745;
+}
+#email-input.input-error {
+    border-color: #dc3545;
+}
+
+.feedback {
+    font-size: 14px;
+    margin-top: 5px;
+    height: 1.5em;
+    padding-left: 5px; /* メッセージを少しインデント */
+}
+
+.success-message {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.error-message {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/*
+ * ============================================
+ * 3. スライドショー
+ * ============================================
+ */
+.slideshow-container {
+    width: 100%;
+    overflow: hidden;
+    height: 120px; /* 高さを少し上げる */
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.slideshow-track {
+    display: flex;
+    width: fit-content;
+    height: 100%;
+    animation: headerScroll 60s linear infinite;
+}
+
+.slideshow-track:hover {
+    animation-play-state: paused;
+}
+
+.slideshow-track img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    filter: brightness(0.7); /* 暗くしてテキストの視認性を確保 */
+    flex-shrink: 0;
+}
+
+@keyframes headerScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/*
+ * ============================================
+ * フッター
+ * ============================================
+ */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+    color: #666;
+    background-color: var(--main-bg-color);
+}
+
+/*
+ * ============================================
+ * レスポンシブデザイン (モバイル向け)
+ * ============================================
+ */
+@media (max-width: 768px) {
+    .header-text {
+        padding: 20px 15px;
+    }
+    .header-text h1 {
+        font-size: 1.8em;
+    }
+    .js-work-section {
+        margin: 20px 10px;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    .main-nav {
+        padding: 0 10px;
+        justify-content: space-around;
+    }
+    .nav-link {
+        flex-grow: 1;
+        text-align: center;
+        padding: 10px 5px;
+    }
+    .slideshow-container {
+        height: 80px; /* モバイルでは高さを抑える */
+    }
 }
 
 
-body.dark-mode #theme-toggle-btn {
-    background-color: #444;
-    color: #fff;
-    border: 1px solid #555;
+/*
+ * ============================================
+ * ⭐️ ダークモード用のスタイル定義 ⭐️
+ * ============================================
+ */
+body.dark-mode {
+    --main-bg-color: #1e1e1e;
+    --main-text-color: #f0f0f0;
+    --section-bg-color: #121212;
+    --accent-color: #00c0c0; /* ダークモードでの強調色 */
+    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.5); /* 影を調整 */
+
+    background-color: var(--section-bg-color);
+    color: var(--main-text-color);
 }
 
-body.dark-mode #theme-toggle-btn:hover {
-     background-color: #555;
+body.dark-mode header {
+    background-color: var(--main-bg-color);
+    border-bottom: 1px solid #333;
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .header-text p {
+    color: #ccc;
 }
 
 body.dark-mode .js-work-section {
-    background-color: #1e1e1e;
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+    background-color: var(--main-bg-color);
+    box-shadow: var(--shadow-light);
+}
+
+body.dark-mode .feature-demo {
+    background-color: #2a2a2a;
+    border-left-color: var(--accent-color);
+}
+
+body.dark-mode .tech-notes {
+    background-color: #2a2a2a;
+}
+body.dark-mode .tech-notes h3 {
+    border-left-color: var(--accent-color);
+}
+
+body.dark-mode .nav-link {
+    color: #bbb;
+}
+body.dark-mode .nav-link:hover,
+body.dark-mode .nav-link.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+/* ローディング */
+body.dark-mode #loader-wrapper {
+    background-color: var(--section-bg-color);
+}
+body.dark-mode .loader {
+    border: 8px solid #333;
+    border-top: 8px solid var(--accent-color);
+}
+
+/* ボタン/入力欄 */
+body.dark-mode #theme-toggle-btn {
+    background-color: var(--accent-color);
+}
+body.dark-mode #theme-toggle-btn:hover {
+    background-color: #009999;
 }
 
 body.dark-mode .text-input,
@@ -257,38 +435,48 @@ body.dark-mode input.text-input {
     color: #f0f0f0;
     border-color: #555;
 }
+body.dark-mode .text-input:focus,
+body.dark-mode textarea.text-input:focus,
+body.dark-mode input.text-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 192, 192, 0.25);
+}
 
 body.dark-mode .counter-display {
-    color: #ccc;
+    color: #aaa;
+}
+body.dark-mode #char-count {
+    color: var(--accent-color);
 }
 
-body.dark-mode {
-    background-color: #121212; /* 全体の背景色を暗く */
-    color: #f0f0f0; /* 全体の文字色を明るく */
+body.dark-mode .slideshow-track img {
+    filter: brightness(0.4);
 }
 
-body.dark-mode .slideshow-track img{
-    filter: brightness(0.5); /* ダークモードではさらに暗く */
+body.dark-mode footer {
+    background-color: var(--main-bg-color);
+    border-top: 1px solid #333;
+    color: #aaa;
 }
 
-/* ヘッダー */
-body.dark-mode header {
-    background-color: #121212;
-    color: #f0f0f0;
-    border-bottom: 0px solid #333;
-}
-
+/* フォーム検証（色調整） */
 body.dark-mode #email-input.input-success {
-    border-color: #20c997; /* 成功時の緑色を調整 */
+    border-color: #20c997;
 }
 body.dark-mode #email-input.input-error {
-    border-color: #ff6b6b; /* 失敗時の赤色を調整 */
+    border-color: #ff6b6b;
+}
+body.dark-mode .success-message {
+    color: #20c997;
+}
+body.dark-mode .error-message {
+    color: #ff6b6b;
 }
 
-/*入力内容リセットボタン*/
+/* リセットボタン */
 body.dark-mode .reset-button {
-    background-color: #646464;
+    background-color: #777;
 }
 body.dark-mode .reset-button:hover {
-    background-color: #787878;
+    background-color: #888;
 }
