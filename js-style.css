@@ -42,16 +42,12 @@ body {
 }
 
 
-
-header {
+.header-text {
     color: rgba(0, 0, 0, 1);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);/* 文字の視認性を上げる影 */
+    pointer-events: auto;/* 文字部分はクリックできるように戻す */
     padding: 20px;
 }
-
-h2 {
-    margin :0px;
-}
-
 
 .js-work-section {
     max-width: 1200px;
@@ -66,6 +62,7 @@ h2 {
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;/* アニメーション時間を設定 */
 }
+
 
 /* ⭐️ アニメーション適用後の状態 ⭐️ */
 .js-work-section.appear {
