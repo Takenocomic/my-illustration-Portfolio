@@ -100,7 +100,7 @@ h2 {
 }
 
 
-/*2.テキストカウンター*/
+/*テキストカウンター*/
 
 
 .text-counter-container {
@@ -173,6 +173,37 @@ h2 {
 }
 
 
+/*フォーム検証機能のスタイル*/
+
+.validation-container {
+    padding: 10px 0;
+}
+
+/* フォームの枠線が成功/失敗に応じて変わるスタイル */
+#email-input.input-success {
+    border-color: #28a745; /* 緑色 (成功) */
+}
+
+#email-input.input-error {
+    border-color: #dc3545; /* 赤色 (失敗) */
+}
+
+/* フィードバックメッセージのスタイル */
+.feedback {
+    font-size: 14px;
+    margin-top: 5px;
+    height: 1.5em; /* メッセージの表示/非表示でレイアウトが崩れないように高さを確保 */
+}
+
+.success-message {
+    color: #28a745; /* 緑色 (成功) */
+}
+
+.error-message {
+    color: #dc3545; /* 赤色 (失敗) */
+    font-weight: bold;
+}
+
 /* ================================= */
 /* ⭐️ ダークモード用のスタイル定義 ⭐️ */
 /* body要素に .dark-mode クラスが付いた時に適用されるスタイル */
@@ -225,4 +256,11 @@ body.dark-mode header {
     background-color: #121212;
     color: #f0f0f0;
     border-bottom: 0px solid #333;
+}
+
+body.dark-mode #email-input.input-success {
+    border-color: #20c997; /* 成功時の緑色を調整 */
+}
+body.dark-mode #email-input.input-error {
+    border-color: #ff6b6b; /* 失敗時の赤色を調整 */
 }

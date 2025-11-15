@@ -151,5 +151,46 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     });
 
+
+    // ------------------------------------------------
+    // 6. リアルタイム入力フォーム検証機能の実装 (新規追加)
+    // ------------------------------------------------
+    const emailInput = document.getElementById('email-input');
+    const feedbackElement = document.getElementById('validation-feedback');
+
+    // ✅ 正規表現: 厳密ではありませんが、簡単なメールアドレス形式（文字列@文字列.2文字以上）をチェック
+    // ^: 行の先頭、$: 行の末尾
+    // \S+ : 空白文字以外が1文字以上
+    // @ : @マーク
+    const emailRegex = /^\S+@\S+\.\S+$/
+
+    function validateEmail() {
+        const email = emailInput.value.trim();
+        // 1. まず、既存のエラー/成功クラスをすべて削除してリセット
+        emailInput.classList.remove('input-success','input-error');
+        feedbackElement.classList.remove('success-message','error-message');
+        feedbackElement.textContent = '';
     
+        // 2. 入力が空の場合は何もしない（または別のメッセージを表示）
+        if (email.length === 0) {
+            return;
+        }
+        // 3. 正規表現で検証を実行
+        if (emailRegex.test(email)) {
+            //成功：形式が正しい場合
+            emailInput.classList.add('input-success');
+            feedbackElement.classList.add('success-message');
+            feedbackElement.textContent = '✅ メールアドレスの形式は正しく認識されました。';
+        } else {
+            //失敗：形式が正しくない場合
+            emailInput.classList.add('input-error');
+            feedbackElement.classList.add('error-message');
+            feedbackElement.textContent = '❌ 有効なメールアドレスの形式ではありません。';
+        }
+    }
+
+    if (emailInput) {
+        // ユーザーが入力するたびに validateEmail 関数を実行
+        emailInput.addEventListener('input',validateEmail);
+    }
 });

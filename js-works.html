@@ -114,6 +114,28 @@
             </div>
         </section>
 
+
+        <section class="js-work-section">
+            <h2>6. リアルタイム入力フォーム検証</h2>
+            <div class="feature-demo">
+                <p>フォームにメールアドレスを入力すると、JavaScriptがリアルタイムで形式をチェックします。</p>
+                
+                <div class="validation-container">
+                    <input type="text" id="email-input" class="text-input" placeholder="メールアドレスを入力してください">
+                    <p id="validation-feedback" class="feedback error-message"></p>
+                </div>
+            </div>
+            
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**JavaScript (`input`イベント)**：ユーザーが文字を入力するたびにイベントを捕捉し、即座に検証関数を実行します。</li>
+                    <li>**正規表現（Regex）**：文字列のパターン（この場合はメールアドレスの形式）を定義し、入力値がそのパターンに一致するかを高速にチェックします。</li>
+                    <li>**DOM操作とCSS**：検証結果に応じて、入力欄の枠線色（成功/失敗）やエラーメッセージの表示/非表示を動的に切り替えます。</li>
+                </ul>
+            </div>
+        </section>
+
     </main>
 
     <footer>
