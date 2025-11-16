@@ -220,6 +220,43 @@
             </div>
         </section>
 
+        <section class="js-work-section">
+            <h2>11. ドラッグ＆ドロップ機能 (ToDoリスト)</h2>
+            <div class="feature-demo">
+                <p>タスクをドラッグして「未完了」エリアから「完了」エリアへ移動させてみましょう。</p>
+                <div class="todo-app-container">
+                    <div id="todo-pending" class="todo-list-area" data-status="pending">
+                        <h3>未完了タスク 📝</h3>
+                        <div id="task-1" class="todo-task-item" draggable="true">
+                            <p>JavaScriptの機能を実装する</p>
+                            <span>(優先度: 高)</span>
+                        </div>
+                        <div id="task-2" class="todo-task-item" draggable="true">
+                            <p>ポートフォリオのデザインを調整する</p>
+                            <span>(優先度: 中)</span>
+                        </div>
+                    </div>
+
+                    <div id="todo-completed" class="todo-list-area completed-area" data-status="completed">
+                        <h3>完了タスク ✅</h3>
+                        <div id="task-3" class="todo-task-item completed" draggable="true">
+                            <p>CSSの変数を設定し終える</p>
+                            <span>(優先度: 低)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**`draggable`属性**: 要素をドラッグ可能にするためにHTML側で設定します。</li>
+                    <li>**`dataTransfer`オブジェクト**: ドラッグ開始時に移動するタスクのIDなどのデータを保存し、ドロップ時にそれを受け渡します。</li>
+                    <li>**イベントのデフォルト動作の無効化**: ブラウザの標準動作（リンクのドラッグなど）を止め、カスタムのドロップ処理を可能にする必要があります。</li>
+                </ul>
+            </div>
+        </section>
+
     </main>
 
     <footer>

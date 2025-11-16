@@ -364,9 +364,65 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     }
 
-
-
     if(fetchFactBtn) {
         fetchFactBtn.addEventListener('click',fetchCatFact);
     }
+
+    // ------------------------------------------------
+    // 11. ドラッグ＆ドロップ機能 (ToDoリスト)
+    // ------------------------------------------------
+
+    // 必要なDOM要素を一括で取得
+    const todoAppContainer =document.querySelector('.todo-app-container');
+    const allTasks = todoAppContainer ? Array.from(todoAppContainer.querySelectorAll('.todo-task-item')) : [];
+    const dropZones = todoAppContainer ? Array.from(todoAppContainer.querySelectorAll('.todo-list-area')) : [];
+    
+    // A. ドラッグイベント (タスクを掴んだとき)
+    allTasks.forEach (task => {
+        task.addEventListener('dragstart', (e) => {
+            // 1. 掴んだ要素に「dragging」クラスを付けて見た目を変更
+            e.currentTarget.classList.add('dragging');
+            // 2. 移動させるデータ（タスクのID）を保存
+            // 'text/plain' はデータ形式、e.currentTarget.id は移動させるタスクのID
+            e.dataTransfer.setData('text/plain',e.currentTarget.id);
+        });
+
+        task.addEventListener('dragend', (e) => {
+            // 3. ドラッグが終了したら「dragging」クラスを削除
+            e.currentTarget.classList.remove('dragging')
+        });
+    });
+
+    // B. ドロップイベント (ドロップゾーン上での処理)
+    dropZones.forEach(zone => {
+        // 1. dragover: ドロップを許可するための処理（必須）
+        zone.addEventListener('dragover',(e) => {
+            e.preventDefault();// これがないとドロップ（dropイベント）が発火しない
+        });
+
+        // 2. drop: 要素が離されたときに実行される処理
+        zone.addEventListener('drop',(e) => {
+            e.preventDefault();
+
+            // 3. 保存されていたタスクIDを取得
+            const taskId = e.dataTransfer.getData('text/plain');
+            const draggedElement =document.getElementById(taskId);
+
+            if (draggedElement) {
+                // 4. ドロップゾーンに要素を追加（移動）
+                zone.appendChild(draggedElement);
+
+                // 5. タスクの状態に応じて見た目を更新
+                const newStatus = zone.getAttribute('data-status');
+
+                if (newStatus === 'completed') {
+                    draggedElement.classList.add('completed');
+                    // 完了済みタスクのテキストを更新
+                } else {
+                    draggedElement.classList.remove('completed');
+                }
+            }   
+        });
+    });
+
 });
