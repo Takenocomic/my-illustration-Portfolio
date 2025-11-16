@@ -13,6 +13,7 @@
 }
 
 body {
+    translate: yes; /* ページの言語を日本語として扱うようブラウザに指示 */
     font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
     margin: 0;
     padding: 0;
@@ -332,6 +333,21 @@ input.text-input:focus {
     vertical-align: middle;
     margin-left: 10px;
 }
+ 
+
+/* 10. ランダム雑学表示用のスタイル */
+.fact-display-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: var(--section-bg-color);
+    border-radius: 8px;
+    border-left: 5px solid var(--accent-color); /* 強調 */
+    font-size: 1.1em;
+    font-weight: bold;
+    min-height: 50px;
+    display: flex; /* テキストの縦方向の位置を中央に */
+    align-items: center;
+}
 
 
 /*
@@ -549,4 +565,11 @@ body.dark-mode .user-card {
 }
 body.dark-mode .user-card h3 {
     border-bottom: 1px solid #333;
+}
+
+/* 10. ランダム雑学表示用のスタイル */
+body.dark-mode .fact-display-container {
+    background-color: #1e1e1e;
+    border-color: var(--accent-color);
+    color: var(--main-text-color);
 }

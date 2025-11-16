@@ -331,4 +331,42 @@ document.addEventListener('DOMContentLoaded',()=>{
     if (fetchDataBtn) {
         fetchDataBtn.addEventListener('click',fetchAndDisplayUsers);
     }
+
+    // ------------------------------------------------
+    // 10. ランダムな雑学の取得 (Fetch API 応用)
+    // ------------------------------------------------
+    const fetchFactBtn = document.getElementById('fetch-fact-btn');
+    const factDisplay = document.getElementById('cat-fact-display');
+
+    async function fetchCatFact() {
+        // 処理中にローディングテキストに切り替える
+        factDisplay.innerHTML = '<p>雑学を取得中．．．<span class="loader-small"></span><p>';
+        factDisplay.disabled = true;
+
+        try {
+            // 1. APIへリクエスト
+            const response = await fetch('https://catfact.ninja/fact');
+            // エラーハンドリング: HTTPステータスコードが4xx/5xxの場合
+            if (!response.ok) {
+                throw new Error(`HTTPエラー! ステータス: ${response.status}`);
+            }
+            // 2. 応答をJSONとして解析 (非同期処理)
+            const data = await response.json();
+            // 3.データ表示: オブジェクトから 'fact' の値だけを取り出す
+            factDisplay.textContent = `💡 ${data.fact}`;
+
+        } catch (error) {
+            console.error('雑学取得エラー:',error);
+            factDisplay.textContent = '❌ データの取得に失敗しました。';
+        } finally {
+            // 成功/失敗に関わらずボタンを再度有効化
+            fetchFactBtn.disabled = false ;
+        }
+    }
+
+
+
+    if(fetchFactBtn) {
+        fetchFactBtn.addEventListener('click',fetchCatFact);
+    }
 });
