@@ -263,4 +263,72 @@ document.addEventListener('DOMContentLoaded',()=>{
     individualResetButtons.forEach(button => {
         button.addEventListener('click', resetIndividualInput);
     });
+
+
+    // ------------------------------------------------
+    // 9. 外部APIからのデータ取得と表示 (Fetch API)
+    // ------------------------------------------------
+    const fetchDataBtn = document.getElementById('fetch-data-btn');
+    const userListContainer = document.getElementById('user-list-container');
+
+    async function fetchAndDisplayUsers() {
+        // ユーザーに処理中であることを伝える
+        userListContainer.innerHTML = '<p>データを取得中．．． <span class="loader-small"></span></p>';
+        fetchDataBtn.disabled = true;
+
+        try {
+            // 1. データの取得 (非同期処理)
+            const response = await fetch('https://jsonplaceholder.typicode.com/users');
+            // エラーハンドリング: HTTPステータスコードが4xx/5xxの場合
+            if (!response.ok) {
+                throw new Error(`HTTPエラー! ステータス: ${response.status}`);
+            }
+
+            // 2. 応答をJSONとして解析 (非同期処理)
+            const users = await response.json();
+
+            // 3. データ表示
+            displayUsers(users);
+        } catch (error) {
+            // エラー発生時の処理
+            console.error('データ取得エラー:',error);
+            userListContainer.innerHTML = '<p class="error-message">データの取得に失敗しました。コンソールを確認してください。</p>';
+        } finally {
+            // 成功/失敗に関わらずボタンを再度有効化
+            fetchDataBtn.disabled = false;
+        }
+        
+    }
+
+    function displayUsers(users) {
+        // コンテナを空にする
+        userListContainer.innerHTML = '';
+
+        // カードを格納するコンテナを作成（CSS Grid/Flexboxを使うため）
+        const cardsGrid =document.createElement('div');
+        cardsGrid.classList.add('user-cards-grid');
+
+        users.forEach(user => {
+            // 1. ユーザーごとのカード要素を作成
+            const card = document.createElement('div'); 
+            card.classList.add('user-card'); // カードごとのスタイルクラスを付与
+
+            // 取得したデータ（名前、ユーザー名、メール、会社、都市）を表示
+            card.innerHTML = `
+                <h3>${user.name}</h3>
+                <p><strong>@${user.username}</strong></p>
+                <p>📧 ${user.email}</p>
+                <p>🏢 ${user.company.name}</p>
+                <p>📍 ${user.address.city}</p>
+            `;
+            cardsGrid.appendChild(card);
+        });
+
+        userListContainer.appendChild(cardsGrid);
+    }
+
+    // ボタンクリックでデータ取得関数を実行
+    if (fetchDataBtn) {
+        fetchDataBtn.addEventListener('click',fetchAndDisplayUsers);
+    }
 });

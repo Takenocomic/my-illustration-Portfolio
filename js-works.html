@@ -180,6 +180,27 @@
             </div>
         </section>
 
+
+        <section class="js-work-section">
+            <h2>9. 外部APIからのデータ取得と表示</h2>
+            <div class="feature-demo">
+                <p>外部API（JSONPlaceholder）からユーザー情報を取得し、カード形式で表示します。</p>
+                <button id="fetch-data-btn" class="reset-button">ユーザーデータを取得して表示</button>
+                <div id="user-list-container" class="data-display-container">
+                    <p>ボタンを押してデータを読み込んでください。</p>
+                </div>
+            </div>
+
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**Fetch API**：ネットワーク越しにリソースを取得するための最新のAPIを使用。</li>
+                    <li>**非同期処理 (`async`/`await`)**：データ取得の完了を待ってから次の処理を実行し、UIのフリーズを防ぐ方法を習得。</li>
+                    <li>**動的なDOM生成**：取得したデータに基づいて、HTML要素をJavaScriptで生成し、ページに挿入しています。</li>
+                </ul>
+            </div>
+        </section>
+
     </main>
 
     <footer>
