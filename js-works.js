@@ -425,4 +425,89 @@ document.addEventListener('DOMContentLoaded',()=>{
         });
     });
 
+    // ------------------------------------------------
+    // 12. アニメーション制御 (CSS Animation応用)
+    // ------------------------------------------------
+    const animatedBox = document.getElementById('animated-box');
+    const toggleAnimationBtn = document.getElementById('toggle-animation-btn');
+    const resetAnimationBtn = document.getElementById('reset-animation-btn');
+    const speedUpBtn = document.getElementById('speed-up-btn');
+
+    if (animatedBox && toggleAnimationBtn) {
+        // ⭐️ 1. 停止/再生の切り替え ⭐️
+        toggleAnimationBtn.addEventListener('click',() => {
+            // クラスではなく、インラインスタイルで再生状態を直接操作
+            if (animatedBox.style.animationPlayState === 'paused') {
+                // 再開 (running)
+                animatedBox.style.animationPlayState = 'running';
+                animatedBox.classList.remove('paused'); // 赤枠を消す
+                toggleAnimationBtn.textContent = '■ アニメーション停止';
+            } else {
+                // 停止 (paused)
+                animatedBox.style.animationPlayState = 'paused';
+                animatedBox.classList.add('paused'); // 赤枠を出す
+                toggleAnimationBtn.textContent = '▶ アニメーション再生';
+            }
+        });
+    }
+
+    if (animatedBox && resetAnimationBtn) {
+        resetAnimationBtn.addEventListener('click', () => {
+            // ⭐️ 2. アニメーションのリセット ⭐️
+            animatedBox.style.animation = 'none';
+
+            // 強制的に再描画させるための小技
+            void animatedBox.offsetWidth;
+
+            // 元のアニメーションを再適用（速度を初期値の4sに戻す）
+            animatedBox.style.animationName = 'rotate-360';
+            animatedBox.style.animationDuration = '4s'; // 初期値に戻す
+            animatedBox.style.animationTimingFunction = 'linear';
+            animatedBox.style.animationIterationCount = 'infinite';
+
+            // 停止クラスを削除して再生状態に戻す
+            animatedBox.classList.remove('paused');
+            animatedBox.style.animationPlayState = 'running'; // インラインスタイルで再生を確定
+            toggleAnimationBtn.textContent = '■ アニメーション停止';
+            speedUpBtn.textContent = '↑ 速度アップ';
+        });
+    }
+
+    if (animatedBox && speedUpBtn) {
+        // ⭐️ 3. 速度の変更 ⭐️
+        speedUpBtn.addEventListener('click', () => {
+            // 1. 現在のCSSスタイルを取得（重要！）
+            const style = window.getComputedStyle(animatedBox);
+
+            // 2. 現在のduration（時間）を取得 (例: "4s")
+            const currentDurationStr = style.getPropertyValue('animation-duration');
+
+            // 3. 文字列から数字（秒）に変換
+            const currentDuration = parseFloat(currentDurationStr);
+
+            // 4. 新しい速度を計算 (時間を25%短縮 = 25%速くなる)
+            const newDuration = Math.max(0.5, currentDuration * 0.75);// 最小0.5秒を設定
+
+            // 5. 新しいdurationを適用
+            // a. 一度アニメーション名をクリア
+            animatedBox.style.animationName = 'none'
+
+            // b. 強制的に再描画させるための小技
+            // ※この処理がないと、animationName=noneの解除が反映されないブラウザがあります
+            void animatedBox.offsetWidth;
+
+            // c. 新しい duration を適用し、アニメーション名を再適用
+            animatedBox.style.animationDuration = `${newDuration}s`;
+            animatedBox.style.animationName = 'rotate-360';
+
+            // d. 停止クラスを削除して再生状態に戻す (安全のため)
+            animatedBox.style.animationPlayState = 'running';
+            animatedBox.classList.remove('paused');
+
+            // 6. ボタンのテキストを更新
+            speedUpBtn.textContent = `↑ 速度アップ (${newDuration.toFixed(2)}秒)`;
+            toggleAnimationBtn.textContent = '■ アニメーション停止'; // 停止ボタンも再生状態に戻す
+        });
+    }
+
 });

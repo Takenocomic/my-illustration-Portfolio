@@ -257,6 +257,29 @@
             </div>
         </section>
 
+        <section class="js-work-section">
+            <h2>12. アニメーション制御 (CSS Animation応用)</h2>
+            <div class="feature-demo">
+                <p>下のボックスはCSSで回転しています。ボタンでそのアニメーションを制御してみましょう。</p>
+                <div class="animation-control-container">
+                    <div id="animated-box" class="animated-box">CSS Animation</div>
+                    <div class="animation-controls">
+                        <button id="toggle-animation-btn" class="reset-button">■ アニメーション停止</button>
+                        <button id="reset-animation-btn" class="reset-button">↻ リセット</button>
+                        <button id="speed-up-btn" class="reset-button">↑ 速度アップ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**`animation-play-state`**: CSSのこのプロパティをJavaScriptで `paused` や `running` に切り替えることで、アニメーションを制御します。</li>
+                    <li>**`getComputedStyle()`**: 現在要素に適用されているCSSの値（ここではアニメーション速度）をJavaScriptから取得する方法を習得します。</li>
+                </ul>
+            </div>
+        </section>
+
     </main>
 
     <footer>

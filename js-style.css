@@ -434,6 +434,61 @@ input.text-input:focus {
     font-weight: normal;
 }
 
+/* 12. アニメーション制御用のスタイル */
+@keyframes rotate-360 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animation-control-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.animated-box {
+    width: 120px;
+    height: 120px;
+    background-color: var(--accent-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 20px;
+
+    /* ⭐️ 初期アニメーション設定 ⭐️ */
+    animation-name: rotate-360;/* 4秒で線形に無限回転 */
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.animation-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.animation-controls button {
+    width: 180px;
+    flex: 0 0 auto;
+    white-space: nowrap;/* テキストの折り返しを防ぎ、幅の計算を安定させる*/
+    text-align: center;
+}
+
+/* ⭐️ 停止時のクラス ⭐️ */
+.animated-box.paused {
+    animation-play-state: paused;/* これでアニメーションが停止する */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* 停止していることを強調 */
+    
+}
+
 /*
  * ============================================
  * 3. スライドショー
@@ -676,4 +731,10 @@ body.dark-mode .todo-task-item {
 body.dark-mode .todo-task-item.completed {
     background-color: #2a3a2a; /* ダークモードの薄い緑 */
     border-left: 5px solid #20c997;
+}
+
+
+/* 12. アニメーション制御用のスタイル */
+body.dark-mode .animated-box {
+    background-color: #00c0c0;
 }
