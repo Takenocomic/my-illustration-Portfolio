@@ -212,6 +212,14 @@ header {
     /* ⭐️ 追加: 高さを画面に合わせ、はみ出す場合はスクロール可能にする */
     max-height: 80vh; /* Viewport Height (画面高さ) の80%に制限 */
     overflow-y: auto; /* 高さ制限を超えた場合のみ縦スクロール可能 */
+    
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)}
+    to {transform: scale(1)}
 }
 
 #modal-image {

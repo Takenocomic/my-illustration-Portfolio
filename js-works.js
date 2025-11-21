@@ -510,4 +510,85 @@ document.addEventListener('DOMContentLoaded',()=>{
         });
     }
 
+
+    // ------------------------------------------------
+    // 13. モーダル（画像拡大）機能の実装
+    // ------------------------------------------------
+    const modal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const closeBtn = document.querySelector('.modal-close-btn');
+    const galleryImages = document.querySelectorAll('.work-item img');
+
+    if (galleryImages.length > 0 && modal && modalImage) {
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = "flex";
+                modalImage.src = this.src;
+                const modalCaption = document.getElementById('modal-caption');
+                if (modalCaption) {
+                    modalCaption.innerHTML = this.alt || '';
+                }
+            });
+        });
+    }
+
+    function closeModal(){
+        if (modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    if (closeBtn){
+     closeBtn.addEventListener('click',closeModal);
+    }
+
+    if (modal) {
+        modal.addEventListener('click', (event) => {
+            // クリックされたのがモーダル自身（背景）で、かつ画像やボタンではなかったら閉じる
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
+            closeModal();
+        }
+    });
+    
+    // ------------------------------------------------
+    // 14. 格納型サイドバー（ハンバーガーメニュー）機能の実装
+    // ------------------------------------------------
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const mainNav = document.querySelector('.main-nav');
+    const menuCloseBtn = document.getElementById('menu-close-btn');
+
+    if (menuToggleBtn && mainNav) {
+        menuToggleBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('open');
+        });
+    }
+
+    function closeMenu(){
+        if (mainNav) {
+            mainNav.classList.remove('open');
+        }
+    }
+
+    if(menuCloseBtn) {
+        menuCloseBtn.addEventListener('click', closeMenu);
+    }
+
+    document.addEventListener('click', (event) => {
+        if (mainNav && mainNav.classList.contains('open')) {
+            const isClickInsideNav = mainNav.contains(event.target);
+            const isClickOnToggleBtn = menuToggleBtn && menuToggleBtn.contains(event.target);
+
+            if (!isClickInsideNav && !isClickOnToggleBtn) {
+                closeMenu();
+            }
+
+        }
+    });
 });

@@ -94,28 +94,88 @@ header {
     color: #666;
 }
 
+.menu-toggle-btn {
+    position: fixed;
+    top: 10px;
+    left: 7px;
+    z-index: 90;
+    padding: 5px 10px;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: var(--shadow-light);
+    transition: background-color 0.3s;
+}
+
+.menu-toggle-btn:hover {
+    background-color: #0056b3;
+}
+
 .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: var(--section-bg-color);
+    padding: 20px 0;
+    box-shadow: var(--shadow-light);
+    z-index: 100;
+    /* リンクを縦に並べるためのFlexbox設定 */
     display: flex;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
-    gap: 10px;
-    border-bottom: 2px solid #e0e0e0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    transform: translateX(-200px);
+    transition: transform 0.3s ease-out;
 }
 
-.nav-link {
-    text-decoration: none;
-    color: #666;
+.main-nav.open{
+    transform: translateX(0);
+}
+
+.main-nav .menu-close-btn {
+    display: block;
+    width: 80%; /* リンクと同じ幅に */
     padding: 10px 15px;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s;
-    font-weight: bold;
+    margin: 20px auto 20px auto; /* 中央寄せと下部のマージン */
+    text-align: center;
+    cursor: pointer;
+    background-color: transparent; /* 背景なし */
+    color: var(--main-text-color);
+    border: 1px solid var(--main-text-color);
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-.nav-link:hover,
-.nav-link.active {
+.menu-close-btn:hover {
+    background-color: var(--accent-color);
     color: var(--main-bg-color);
-    border-bottom-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.main-nav .nav-link  {
+    display: block;
+    width: 80%;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: #666;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #e0e0e0; /* ホバー時は薄い色 */
+    color: var(--main-text-color);
+}
+.nav-link.active { 
+    background-color: var(--accent-color);
+    color: var(--main-bg-color); 
 }
 
 
@@ -124,9 +184,9 @@ header {
  * メインコンテンツとセクション
  * ============================================
  */
-main {
-    padding-bottom: 50px; /* フッターとの間にスペースを確保 */
-}
+ main {
+    margin-left: 50px;
+ }
 
 .js-work-section {
     max-width: 1000px; /* メインコンテンツの幅を少し狭めて見やすく */
@@ -489,6 +549,34 @@ input.text-input:focus {
     
 }
 
+/* 13. モーダルウィンドウの表示 */
+.gallery {
+    display: grid;
+    /* 画面サイズに応じて列数が変わるように設定 */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.work-item {
+    width: 100%;
+    /* クリック可能であることを示すカーソル */
+    cursor: pointer;
+    overflow: hidden; /* imgがwork-itemからはみ出ないように */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.work-item img.thumbnail {
+    /* 画像をwork-itemの幅いっぱいに広げ、アスペクト比を維持しつつ画像を埋める */
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; /* 画像がコンテナを埋めるように拡大/縮小 */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.work-item img.thumbnail:hover {
+    transform: scale(1.05); /* ホバーで少し拡大するアニメーション */
+}
+
 /*
  * ============================================
  * 3. スライドショー
@@ -526,6 +614,68 @@ input.text-input:focus {
     to { transform: translateX(-50%); }
 }
 
+
+/* ------------------------------------------------- */
+/* モーダルウィンドウのスタイル */
+/* ------------------------------------------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* ⭐️ モーダルが表示されているときのスタイルを分離 ⭐️ */
+.modal-visible {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 500px;
+    max-height: 90%;
+    object-fit: contain;/* 画像をアスペクト比を維持したまま収める */
+
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+    color: #bbb;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)}
+    to {transform: scale(1)}
+}
+
+#modal-caption {
+    margin-top: 15px;
+    color: var(--main-text-color);
+    font-size: 18px;
+}
+
+
 /*
  * ============================================
  * フッター
@@ -558,12 +708,13 @@ footer {
     }
     .main-nav {
         padding: 0 10px;
-        justify-content: space-around;
+        justify-content: flex-start;
+        transform: translateX(-220px);
     }
     .nav-link {
-        flex-grow: 1;
         text-align: center;
         padding: 10px 5px;
+        flex-grow: 0;
     }
     .slideshow-container {
         height: 80px; /* モバイルでは高さを抑える */
@@ -614,13 +765,26 @@ body.dark-mode .tech-notes h3 {
     border-left-color: var(--accent-color);
 }
 
+body.dark-mode .menu-toggle-btn:hover {
+    background-color: #009999;
+}
+
+body.dark-mode .menu-close-btn:hover {
+    background-color: #009999;
+}
+
 body.dark-mode .nav-link {
     color: #bbb;
 }
-body.dark-mode .nav-link:hover,
-body.dark-mode .nav-link.active {
-    color: var(--accent-color);
-    border-bottom-color: var(--accent-color);
+
+body.dark-mode .nav-link:hover {
+    background-color: #333;
+    color: #f0f0f0; 
+}
+
+body.dark-mode .nav-link.active { 
+    background-color: var(--accent-color); 
+    color: var(--main-bg-color);
 }
 
 /* ローディング */
@@ -737,4 +901,15 @@ body.dark-mode .todo-task-item.completed {
 /* 12. アニメーション制御用のスタイル */
 body.dark-mode .animated-box {
     background-color: #00c0c0;
+}
+
+/* 13.モーダルウィンドウの表示 */
+body.dark-mode .work-item {
+    border-color: #333;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
+}
+
+/* モーダルウィンドウのスタイル */
+body.dark-mode .modal-content {
+    /* 必要に応じて拡大画像の明るさなどを調整 */
 }

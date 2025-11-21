@@ -19,8 +19,11 @@
         </div>
     </header>
 
+    <button id="menu-toggle-btn" class="menu-toggle-btn">☰</button>
+
     <main>
         <nav class="main-nav">
+            <button id="menu-close-btn" class="menu-close-btn">✕ 閉じる</button>
             <a href="index.html" class="nav-link">イラスト作品</a>
             <a href="js-works.html" class="nav-link active">JavaScript作品</a>
         </nav>
@@ -280,12 +283,51 @@
             </div>
         </section>
 
+        <section class="js-work-section">
+            <h2>13. モーダルウィンドウの表示</h2>
+            <div class="feature-demo">
+                <p>下の写真をクリックするとモーダルで拡大表示されます。</p>
+                <div class="gallery">
+                    <div class="work-item" data-image="images/insta1.jpg" data-title="端午の節句の限定商品の紹介" data-concept="販売開始の告知及び予約方法をシンプルなデザインで端的に。">
+                        <img src="images/insta1.jpg" alt="インスタ投稿1" class="thumbnail">
+                    </div>
+                    <div class="work-item" data-image="images/insta2.jpg" data-title="ハロウィンイベント告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
+                        <img src="images/insta2.jpg" alt="インスタ投稿2" class="thumbnail">
+                    </div>
+                    <div class="work-item" data-image="images/insta3.jpg" data-title="閉店セール告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
+                        <img src="images/insta3.jpg" alt="インスタ投稿3" class="thumbnail">
+                    </div>
+                    <div class="work-item" data-image="images/insta4.jpg" data-title="新商品告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
+                        <img src="images/insta4.jpg" alt="インスタ投稿4" class="thumbnail">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**`position: fixed`と`z-index`**: モーダルウィンドウを画面の最前面（`z-index: 1000`など）に固定し、他のコンテンツの上に重ねて表示します。</li>
+                    <li>**`display`プロパティの切り替え**: JavaScriptで、モーダル要素のCSS `display` プロパティを `none` (非表示) から `flex` (表示) に切り替えることで、モーダルの表示・非表示を制御しています。</li>
+                    <li>**DOM要素の動的設定**: クリックされた画像の `src` 属性を読み取り、モーダル内の画像要素（`modal-image`）の `src` にコピーすることで、**どの画像でも拡大表示**できるようにしています。</li>
+                    <li>**イベント伝播の利用**: モーダルウィンドウの背景部分をクリックした場合も、JavaScript側でそれを検知しモーダルを閉じる処理（**イベントバブリング/キャプチャリング**を利用した処理）を実装しています。</li>
+                    <li>**アクセシビリティ (`keydown`)**: **Escキー**を押すことでもモーダルが閉じられるように設定し、キーボード操作によるアクセシビリティを確保しています。</li>
+                </ul>
+            </div>
+        </section>
+
     </main>
 
     <footer>
         <p>&copy; 2025 Naofumi Takemoto</p>
-    </footer>
+    </footer> 
 
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close-btn">&times;</span>
+            <img class="modal-content" id="modal-image">
+            <div id="modal-caption"></div> 
+        </div>
+    </div>
     <script src="js-works.js"></script> 
 </body>
 </html>
