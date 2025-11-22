@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     // ------------------------------------------------
     // 1. ダークモード切り替え機能の実装 
     // ------------------------------------------------
-    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const allToggleBtns = document.querySelectorAll('.theme-toggle-btn');
     const body = document.body;
     const darkModeClass = 'dark-mode';
     const storageKey = 'themeMode';
@@ -11,38 +11,43 @@ document.addEventListener('DOMContentLoaded',()=>{
     function toggleTheme() {
         // body要素に 'dark-mode' クラスを追加/削除する
         body.classList.toggle(darkModeClass);
-        
+
+        const isDarkMode = body.classList.contains(darkModeClass);
+        const newText = isDarkMode ? '🌙 ダークモード' : '🌞 ライトモード';
+        const newAriaPressed = isDarkMode ? 'true' : 'false' ;
+
         // 現在の状態を LocalStorage に保存する
-        if (body.classList.contains(darkModeClass)) {
-            localStorage.setItem(storageKey, 'dark');
-            themeToggleBtn.textContent = '🌙 ダークモード';
-            themeToggleBtn.setAttribute('aria-pressed', 'true');
-        } else {
-            localStorage.setItem(storageKey, 'light');
-            themeToggleBtn.textContent = '🌞 ライトモード';
-            themeToggleBtn.setAttribute('aria-pressed', 'false');
-        }
+        localStorage.setItem(storageKey, isDarkMode ? 'dark' : 'light');
+
+        // ★ すべてのトグルボタンのテキストとaria属性を更新します
+        allToggleBtns.forEach(btn => {
+            btn.textContent = newText;
+            btn.setAttribute('aria-pressed', newAriaPressed);
+        });
     }
 
     // **B. ページロード時の初期設定**
     // LocalStorageに保存されたテーマ設定を読み込む
     const storedTheme = localStorage.getItem(storageKey);
 
-    // 1. 保存された設定があればそれを適用する
     if (storedTheme === 'dark') {
         body.classList.add(darkModeClass);
-        themeToggleBtn.textContent = '🌙 ダークモード';
-        themeToggleBtn.setAttribute('aria-pressed', 'true');
-    } else {
-        // 2. 設定がない、または'light'の場合はライトモードを初期表示
-        themeToggleBtn.textContent = '🌞 ライトモード';
-        themeToggleBtn.setAttribute('aria-pressed', 'false');
+        allToggleBtns.forEach(btn => {   // ★ すべてのボタンを更新
+            btn.textContent = '🌙 ダークモード';
+            btn.setAttribute('aria-pressed', 'true');
+        });
+    } else if (storedTheme === 'light') {
+        // ライトモードが保存されていた場合も、すべてのボタンをライトモード表示に更新
+        allToggleBtns.forEach(btn => {
+            btn.textContent = '🌞 ライトモード';
+            btn.setAttribute('aria-pressed', 'false');
+        });
     }
     
     // **C. ボタンクリックイベント**
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', toggleTheme);
-    }
+    allToggleBtns.forEach(btn => {
+        btn.addEventListener('click', toggleTheme);
+    });
 
 
     // ------------------------------------------------
@@ -557,38 +562,5 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     });
     
-    // ------------------------------------------------
-    // 14. 格納型サイドバー（ハンバーガーメニュー）機能の実装
-    // ------------------------------------------------
-    const menuToggleBtn = document.getElementById('menu-toggle-btn');
-    const mainNav = document.querySelector('.main-nav');
-    const menuCloseBtn = document.getElementById('menu-close-btn');
-
-    if (menuToggleBtn && mainNav) {
-        menuToggleBtn.addEventListener('click', function() {
-            mainNav.classList.toggle('open');
-        });
-    }
-
-    function closeMenu(){
-        if (mainNav) {
-            mainNav.classList.remove('open');
-        }
-    }
-
-    if(menuCloseBtn) {
-        menuCloseBtn.addEventListener('click', closeMenu);
-    }
-
-    document.addEventListener('click', (event) => {
-        if (mainNav && mainNav.classList.contains('open')) {
-            const isClickInsideNav = mainNav.contains(event.target);
-            const isClickOnToggleBtn = menuToggleBtn && menuToggleBtn.contains(event.target);
-
-            if (!isClickInsideNav && !isClickOnToggleBtn) {
-                closeMenu();
-            }
-
-        }
-    });
+    
 });

@@ -12,9 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const targetId = button.getAttribute('data-target'); // 表示したいセクションのIDを取得
 
-            // すべてのボタンからactiveクラスを削除し、クリックされたボタンに付与
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
+            // すべてのタブ/サブメニューボタンからactiveクラスを削除し、クリックされたボタンに付与
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active')); 
+            // サブメニューの active は、メインの nav-link の active で代用するためここでは無視
+
+            // ページ内タブコンテナ内のボタンにactiveクラスを付与 (※index.htmlのみ)
+            if (button.classList.contains('tab-button')) {
+                button.classList.add('active');
+            }
 
             // すべてのギャラリーセクションを非表示にし、対象のセクションのみ表示
             gallerySections.forEach(section => {
@@ -162,4 +167,40 @@ document.addEventListener('DOMContentLoaded', () => {
             loaderWrapper.classList.add('hidden');
         }
     };
+
+
+    // ------------------------------------------------
+    // 5. サイドバー実装
+    // ------------------------------------------------
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const mainNav =document.querySelector('.main-nav');
+    const menuCloseBtn = document.getElementById('menu-close-btn');
+
+    if (menuToggleBtn && mainNav) {
+        menuToggleBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('open');
+        });
+    }
+
+    function closeMenu(){
+        if (mainNav){
+            mainNav.classList.remove('open')
+        }
+    }
+
+    if(menuCloseBtn){
+        menuCloseBtn.addEventListener('click',closeMenu);
+    }
+
+    document.addEventListener('click',(event) => {
+        if(mainNav && mainNav.classList.contains('open')) {
+            const isClickInsideNav = mainNav.contains(event.target);
+            const isClickOnToggleBtn = menuToggleBtn && menuToggleBtn.contains(event.target);
+
+            if (!isClickInsideNav && !isClickOnToggleBtn) {
+                closeMenu();
+            }
+        }
+    });
+
 });

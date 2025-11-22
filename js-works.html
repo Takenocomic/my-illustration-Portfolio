@@ -6,32 +6,38 @@
     <title>JavaScript 成果物一覧 - ポートフォリオ</title>
     <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="js-style.css"> 
-    </head>
+</head>
+
 <body>
     <div id="loader-wrapper">
         <div class="loader"></div>
     </div>
 
     <header>
+        <nav class="main-nav">
+            <div class="nav-links-group">
+                <a href="index.html" class="nav-link">イラスト作品</a>
+                <a href="js-works.html" class="nav-link active">JavaScript作品</a>
+            </div>
+            
+            <div class="theme-switch-container">
+                <button id="header-theme-toggle-btn" class="theme-toggle-btn" aria-label="テーマ切り替え">
+                    ライトモード/ダークモード
+                </button>
+            </div>
+        </nav>
+        
         <div class="header-text">
             <h1>JavaScript Works</h1>
             <p>JavaScriptで実装した機能のデモンストレーションです。</p>
         </div>
     </header>
 
-    <button id="menu-toggle-btn" class="menu-toggle-btn">☰</button>
-
     <main>
-        <nav class="main-nav">
-            <button id="menu-close-btn" class="menu-close-btn">✕ 閉じる</button>
-            <a href="index.html" class="nav-link">イラスト作品</a>
-            <a href="js-works.html" class="nav-link active">JavaScript作品</a>
-        </nav>
-
         <section class="js-work-section">
             <h2>1. ダークモード切り替え</h2>
             <div class="feature-demo">
-                <button id="theme-toggle-btn">テーマ切り替え</button>
+                <button id="theme-toggle-btn" class="theme-toggle-btn">テーマ切り替え</button>
                 <p>このボタンでサイト全体の配色（ダーク/ライト）が切り替わります。</p>
             </div>
             
