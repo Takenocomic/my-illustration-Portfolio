@@ -79,23 +79,7 @@ header {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.header-text {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    color: var(--main-text-color);
-    text-shadow: none; /* 不要な影を削除 */
-}
-.header-text h1 {
-    font-size: 2.5em;
-}
-.header-text p {
-    font-size: 1.2em;
-    color:var(--main-text-color);
-}
-
+/*上部タブ*/
 .main-nav {
     position: fixed;
     top: 0;
@@ -166,6 +150,82 @@ header {
     background-color: #0056b3;
 }
 
+/*メインヘッダー*/
+.main-header{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background-image: url('images/js-header-bg2.jpg'); /* 実際のファイルパスに修正してください */
+    background-size: cover;      /* 画像が要素全体を覆うように拡大・縮小 */
+    background-position: center; /* 画像を中央に配置 */
+    background-repeat: no-repeat;/* 画像の繰り返しをなしにする */
+}
+.header-text {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--main-text-color);
+    text-shadow: none; /* 不要な影を削除 */
+}
+.header-text h1 {
+    font-size: 2.5em;
+}
+.header-text p {
+    font-size: 1.2em;
+    color:var(--main-text-color);
+}
+
+
+/* 14. データフィルタリング・ソート機能 */
+.filter-sort-controls{
+    max-width: 1000px; /* メインコンテンツの幅を少し狭めて見やすく */
+    margin: 20px auto 0 auto;
+    display: flex;
+    gap: 8px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-buttons-group {
+    display: flex; /* グループ内のボタンを横並びにする */
+    gap: 8px;
+    flex-grow: 1; /* ① ここが重要！空いたスペースをすべて使い、右端にドロップダウンを押しやる */
+}
+
+.filter-sort-controls .filter-btn {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--accent-color);
+    background-color: transparent;
+    color: var(--main-text-color);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-sort-controls .filter-btn.active{
+    background-color: var(--accent-color);
+    color: var(--main-bg-color);
+    border-color: var(--accent-color);
+}
+
+.filter-sort-controls .filter-btn:hover:not(.active) {
+    background-color: rgba(0, 123, 255, 0.1); /* ホバー時の強調 */
+}
+
+/* ソート用のドロップダウン */
+#sort-selector {
+    flex-grow: 0; /* ボタンと違って幅を伸長させない */
+    min-width: 150px; /* ある程度の幅を確保 */
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    cursor: pointer;
+}
 
 
 /*
@@ -730,6 +790,20 @@ body.dark-mode header {
 
 body.dark-mode .header-text p {
     color: #ccc;
+}
+
+/*14. フィルタリング・ソート機能のスタイル*/
+body.dark-mode .filter-sort-controls .filter-btn {
+    border: 1px solid #555;
+    color: #eee;
+}
+body.dark-mode .filter-sort-controls .filter-btn.active {
+    background-color: var(--accent-color);
+    color: var(--main-bg-color);
+}
+body.dark-mode #sort-selector {
+    border: 1px solid #555;
+    background-color: #2a2a2a;
 }
 
 body.dark-mode .js-work-section {

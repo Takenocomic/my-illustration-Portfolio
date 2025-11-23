@@ -1,3 +1,63 @@
+// ------------------------------------------------
+// 14. データフィルタリング・ソート機能の実装
+// ------------------------------------------------
+function initFilterSort() {
+    const worksContainer = document.querySelector('main');
+    const workSections = document.querySelectorAll('.js-work-section');
+    const filterButtons = document.querySelectorAll('.filter-sort-controls .filter-btn');
+    const sortSelecor = document.getElementById('sort-selector');
+
+    // NodeListを配列に変換（ソートや並べ替えに便利）
+    const worksArray = Array.from(workSections);
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // 既存のactiveクラスをリセット
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');// クリックされたボタンをactiveにする
+
+            const selectedCategory = this.dataset.filter;
+
+            // フィルタリング処理の実行
+            worksArray.forEach(section => {
+                const sectionCategory = section.dataset.category;
+
+                if (selectedCategory === 'all'||sectionCategory === selectedCategory) {
+                    section.style.display = 'block';// 表示
+                } else {
+                    section.style.display = 'none';// 非表示
+                }
+            });
+        });
+    });
+
+    sortSelecor.addEventListener('change', function() {
+        const sortValue = this.value;
+
+        let sortedWorks = [...worksArray];
+
+        if (sortValue === 'oldest') {
+            sortedWorks = worksArray;
+        } else if (sortValue === 'newest') {
+            sortedWorks.reverse();
+        }
+
+        // 表示の更新
+        redrawWorks(worksContainer, sortedWorks);
+    });
+}
+
+// 作品の表示順を更新する関数
+function redrawWorks(container, orderedArray) {
+    // 一度すべての作品をDOMから削除 (または非表示)
+    // 今回は、すべての要素を正しい順番でコンテナに追加し直す方法を使います
+    orderedArray.forEach(section => {
+        // appendChild/insertBefore を使うと、既存の要素を移動できます
+        container.appendChild(section);
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded',()=>{
     // ------------------------------------------------
     // 1. ダークモード切り替え機能の実装 
@@ -563,4 +623,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
     
     
+    // ------------------------------------------------
+    // 14. データフィルタリング・ソート機能の実装
+    // ------------------------------------------------
+    if (document.querySelector('.filter-sort-controls')) {
+        initFilterSort();
+    }
 });

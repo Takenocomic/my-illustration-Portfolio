@@ -26,15 +26,33 @@
                 </button>
             </div>
         </nav>
-        
-        <div class="header-text">
-            <h1>JavaScript Works</h1>
-            <p>JavaScriptで実装した機能のデモンストレーションです。</p>
+        <div class="main-header">
+            <div class="header-text">
+                <h1>JavaScript Works</h1>
+                <p>JavaScriptで実装した機能のデモンストレーションです。</p>
+            </div>
         </div>
     </header>
 
     <main>
-        <section class="js-work-section">
+        <div class="filter-sort-controls">
+            <div class="filter-buttons-group">
+                <button data-filter="all" class="filter-btn active">すべて</button>
+                <button data-filter="UI/UX" class="filter-btn">UI/UX機能</button>
+                <button data-filter="API/Data" class="filter-btn">API・データ機能</button>
+                <button data-filter="Storage/Utility" class="filter-btn">Storage・Utility機能</button>
+                <button data-filter="Advanced" class="filter-btn">応用機能</button>
+            </div>
+
+            <select id="sort-selector">
+                <option value="default">デフォルト順</option>
+                <option value="older">古い順(ID順)</option>
+                <option value="newest">新しい順(ID逆順)</option>
+            </select>
+        </div>
+
+
+        <section class="js-work-section" data-category="UI/UX">
             <h2>1. ダークモード切り替え</h2>
             <div class="feature-demo">
                 <button id="theme-toggle-btn" class="theme-toggle-btn">テーマ切り替え</button>
@@ -50,7 +68,7 @@
             </div>
         </section>
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="UI/UX">
             <h2>2. リアルタイム文字数カウンター</h2>
             <div class="feature-demo">
                 <p>下のテキストエリアに文字を入力すると、その文字数を計測します。</p>
@@ -66,7 +84,7 @@
 
         </section>
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="UI/UX">
             <h2>3. スライドショー</h2>
             <div class="slideshow-container" id="slideshow-container">
                 <div class="slideshow-track" id="slideshow-track">
@@ -90,7 +108,7 @@
         </section>
 
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="UI/UX">
             <h2>4. スクロール時の要素フェードイン機能</h2>
 
             <div class="feature-demo">
@@ -110,7 +128,7 @@
         </section>
 
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="UI/UX">
             <h2>5. ローディングアニメーション</h2>
             <div class="feature-demo">
                 <p>ページ内のすべてのリソース（画像、CSS、JSなど）の読み込みが完了するまで、画面全体を覆うローディング表示を行います。</p>
@@ -129,7 +147,7 @@
         </section>
 
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="UI/UX">
             <h2>6. リアルタイム入力フォーム検証</h2>
             <div class="feature-demo">
                 <p>フォームにメールアドレスを入力すると、JavaScriptがリアルタイムで形式をチェックします。</p>
@@ -152,7 +170,7 @@
         </section>
 
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="Storage/Utility">
             <h2>7. チェックボックスの状態記憶</h2>
             <div class="feature-demo">
                 <input type="checkbox" id="remember-settings-checkbox">
@@ -170,7 +188,7 @@
             </div>
         </section>
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="UI/UX">
             <h2>8. 入力文字のリセットボタン</h2>
             <div class="feature-demo">
                 <div class="reset-sample-container">
@@ -190,7 +208,7 @@
         </section>
 
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="API/Data">
             <h2>9. 外部APIからのデータ取得と表示</h2>
             <div class="feature-demo">
                 <p>外部API（JSONPlaceholder）からユーザー情報を取得し、カード形式で表示します。</p>
@@ -210,7 +228,7 @@
             </div>
         </section>
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="API/Data">
             <h2>10. ランダムな雑学の取得 (Fetch API 応用)</h2>
             <div class="feature-demo">
                 <p>ボタンを押すと、外部APIからランダムな猫の豆知識を取得・表示します。</p>
@@ -229,7 +247,7 @@
             </div>
         </section>
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="Advanced">
             <h2>11. ドラッグ＆ドロップ機能 (ToDoリスト)</h2>
             <div class="feature-demo">
                 <p>タスクをドラッグして「未完了」エリアから「完了」エリアへ移動させてみましょう。</p>
@@ -266,7 +284,7 @@
             </div>
         </section>
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="Advanced">
             <h2>12. アニメーション制御 (CSS Animation応用)</h2>
             <div class="feature-demo">
                 <p>下のボックスはCSSで回転しています。ボタンでそのアニメーションを制御してみましょう。</p>
@@ -289,7 +307,7 @@
             </div>
         </section>
 
-        <section class="js-work-section">
+        <section class="js-work-section" data-category="UI/UX">
             <h2>13. モーダルウィンドウの表示</h2>
             <div class="feature-demo">
                 <p>下の写真をクリックするとモーダルで拡大表示されます。</p>
@@ -317,6 +335,25 @@
                     <li>**DOM要素の動的設定**: クリックされた画像の `src` 属性を読み取り、モーダル内の画像要素（`modal-image`）の `src` にコピーすることで、**どの画像でも拡大表示**できるようにしています。</li>
                     <li>**イベント伝播の利用**: モーダルウィンドウの背景部分をクリックした場合も、JavaScript側でそれを検知しモーダルを閉じる処理（**イベントバブリング/キャプチャリング**を利用した処理）を実装しています。</li>
                     <li>**アクセシビリティ (`keydown`)**: **Escキー**を押すことでもモーダルが閉じられるように設定し、キーボード操作によるアクセシビリティを確保しています。</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section class="js-work-section" data-category="UI/UX">
+            <h2>14. データフィルタリング&ソート機能</h2>
+            <div class="feature-demo">
+                <p>カテゴリ別の絞り込みと表示順を変更できます。</p>
+            </div>
+            
+            <div class="tech-notes">
+                <h3>技術解説</h3>
+                <ul>
+                    <li>**データ属性による分類**: 各作品セクションに **カスタムデータ属性** (`data-category`) を付与し、JavaScriptでその値を読み取ることで、作品の分類データをHTML側で管理しています。</li>
+                    <li>**フィルタリング (絞り込み)**: フィルターボタンがクリックされた際、対応するカテゴリーを持つ要素以外の CSS `display` プロパティを `none` に設定することで、表示/非表示を動的に切り替えています。</li>
+                    <li>**配列への変換**: `document.querySelectorAll()` で取得したDOM要素のリスト（`NodeList`）を、JavaScriptの **`Array.from()` メソッド**を使って操作しやすい配列 (`worksArray`) に変換しています。</li>
+                    <li>**DOMの再配置 (ソート)**: 並べ替えを行う際は、配列メソッド（`Array.prototype.reverse()`など）で**配列の順番を操作**した後、親要素（`main`タグ）に対して **`appendChild()`** を実行しています。</li>
+                    <li>**効率的なDOM操作**: 既存のDOM要素に対して `appendChild()` を行うと、要素は複製されず、親要素内での**位置が移動**する特性を利用しています。これにより、要素をすべて削除して作り直すよりも効率的に表示順を更新しています。</li>
                 </ul>
             </div>
         </section>
