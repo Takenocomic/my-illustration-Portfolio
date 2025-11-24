@@ -1,0 +1,1004 @@
+/*
+ * ============================================
+ * 全体のリセットと基本スタイル
+ * ============================================
+ */
+:root {
+    /* ライトモードのメイン配色 (CSS変数で定義) */
+    --main-bg-color: #ffffff;
+    --main-text-color: #333333;
+    --section-bg-color: #f8f8f8;
+    --accent-color: #007bff;
+    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    translate: yes; /* ページの言語を日本語として扱うようブラウザに指示 */
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--section-bg-color); /* 背景色をセクション外の領域に設定 */
+    color: var(--main-text-color);
+    line-height: 1.6; /* 読みやすさ向上のため行間を広げる */
+}
+
+
+main {
+    margin-top: 80px;
+}
+
+h2, h3 {
+    color: var(--main-text-color);
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+/*
+ * ============================================
+ * ローディングアニメーション
+ * ============================================
+ */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-bg-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+    visibility: visible;
+}
+
+#loader-wrapper.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid var(--accent-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*
+ * ============================================
+ * ヘッダーとナビゲーション
+ * ============================================
+ */
+header {
+    display: flex;
+    width:  100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+
+    background-color: var(--main-bg-color);
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/*上部タブ*/
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: var(--main-bg-color);
+    box-shadow: var(--shadow-light);
+    /* リンクの配置 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-links-group {
+    display: flex;
+    margin-left: 20px;
+    gap: 20px;
+}
+
+
+.main-nav .nav-link  {
+    display: block;
+    padding: 10px 15px;
+    background-color: var(--section-bg-color);
+    color: var(--main-text-color);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #e0e0e0 ; /* ホバー時は薄い色 */
+    color: var(--main-text-color);
+}
+.nav-link.active { 
+    background-color: var(--accent-color);
+    color: var(--main-bg-color); 
+}
+
+.nav-link.active:hover {
+    background-color: #0056b3;
+}
+
+.theme-switch-container {
+    position: absolute;
+    margin-right: 20px;
+}
+
+#header-theme-toggle-btn {
+    display: block;
+    padding: 10px 15px;
+    background-color: var(--accent-color);
+    color: var(--main-bg-color);
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#header-theme-toggle-btn:hover {
+    background-color: #0056b3;
+}
+
+/*メインヘッダー*/
+.main-top{
+    flex-grow: 1;
+    align-items: center;
+    background-image: url('images/js-header-bg2.jpg'); /* 実際のファイルパスに修正してください */
+    background-size: cover;      /* 画像が要素全体を覆うように拡大・縮小 */
+    background-position: center; /* 画像を中央に配置 */
+    background-repeat: no-repeat;/* 画像の繰り返しをなしにする */
+    min-height: 250px; /* 最低250pxの高さを持たせる */
+    width: 100%; /* 横幅も確保 */
+    margin-top: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.top-text {
+    color: var(--main-bg-color);
+}
+.top-text h1 {
+    font-size: 2.5em;
+}
+.top-text p {
+    font-size: 1.2em;
+}
+
+
+/* 14. データフィルタリング・ソート機能 */
+.filter-sort-controls{
+    max-width: 1000px; /* メインコンテンツの幅を少し狭めて見やすく */
+    margin: 20px auto 0 auto;
+    display: flex;
+    gap: 8px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-buttons-group {
+    display: flex; /* グループ内のボタンを横並びにする */
+    gap: 8px;
+    flex-grow: 1; /* ① ここが重要！空いたスペースをすべて使い、右端にドロップダウンを押しやる */
+}
+
+.filter-sort-controls .filter-btn {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--accent-color);
+    background-color: transparent;
+    color: var(--main-text-color);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-sort-controls .filter-btn.active{
+    background-color: var(--accent-color);
+    color: var(--main-bg-color);
+    border-color: var(--accent-color);
+}
+
+.filter-sort-controls .filter-btn:hover:not(.active) {
+    background-color: rgba(0, 123, 255, 0.1); /* ホバー時の強調 */
+}
+
+/* ソート用のドロップダウン */
+#sort-selector {
+    flex-grow: 0; /* ボタンと違って幅を伸長させない */
+    min-width: 150px; /* ある程度の幅を確保 */
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    cursor: pointer;
+}
+
+
+/*
+ * ============================================
+ * メインコンテンツとセクション
+ * ============================================
+ */
+.js-work-section {
+    max-width: 1000px; /* メインコンテンツの幅を少し狭めて見やすく */
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--main-bg-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+
+    /* フェードインアニメーションの初期状態 */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.js-work-section.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feature-demo {
+    padding: 10px 0;
+    border-left: 5px solid var(--accent-color); /* デモ部分を強調 */
+    padding-left: 15px;
+    padding-right: 5%;
+    margin: 20px 0;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.tech-notes {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--section-bg-color);
+    border-radius: 8px;
+}
+
+.tech-notes h3 {
+    border-left: 3px solid var(--accent-color);
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+.tech-notes ul {
+    list-style: disc inside;
+    padding-left: 10px;
+}
+
+/*
+ * ============================================
+ * パーツスタイル (ボタン、入力欄、カウンター)
+ * ============================================
+ */
+
+/* 1. ダークモードボタン */
+#theme-toggle-btn {
+    background-color: var(--accent-color);
+    color: var(--main-bg-color);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 10px;
+}
+
+#theme-toggle-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* 8. リセットボタン */
+.reset-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s;
+    margin: 10px 0;
+}
+
+.reset-button:hover {
+    background-color: #5a6268;
+}
+
+/* 入力フィールド全般 */
+.text-input,
+textarea.text-input,
+input.text-input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0 ;
+    font-size: 16px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.text-input:focus,
+textarea.text-input:focus,
+input.text-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* 2. 文字数カウンター */
+.counter-display {
+    text-align: right;
+    margin: 10px 0 15px 0;
+    font-size: 15px;
+    color: #666;
+}
+
+#char-count {
+    font-weight: bold;
+    color: var(--accent-color);
+    font-size: 1.1em;
+}
+
+/* 6. フォーム検証 */
+#email-input.input-success {
+    border-color: #28a745;
+}
+#email-input.input-error {
+    border-color: #dc3545;
+}
+
+.feedback {
+    font-size: 14px;
+    margin-top: 5px;
+    height: 1.5em;
+    padding-left: 5px; /* メッセージを少しインデント */
+}
+
+.success-message {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.error-message {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* 9. Fetch API データ表示用のスタイル */
+.data-display-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--section-bg-color);
+    border-radius: 8px;
+    min-height: 100px; /* ロード中の高さを確保 */
+}
+
+.user-cards-grid {
+    display: grid;
+    /* 画面サイズに応じて列数が変わるように設定 */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 20px;
+    padding: 0;
+}
+
+.user-card {
+    background-color: var(--main-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.user-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 5px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 5px;
+}
+.user-card p {
+    margin: 4px 0;
+    font-size: 0.95em;
+}
+
+/* 取得中の小さなローディングスピナー */
+.loader-small {
+    display: inline-block;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--accent-color);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+ 
+
+/* 10. ランダム雑学表示用のスタイル */
+.fact-display-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: var(--section-bg-color);
+    border-radius: 8px;
+    border-left: 5px solid var(--accent-color); /* 強調 */
+    font-size: 1.1em;
+    font-weight: bold;
+    min-height: 50px;
+    display: flex; /* テキストの縦方向の位置を中央に */
+    align-items: center;
+}
+
+/* 11. ドラッグ＆ドロップ ToDoリストのスタイル */
+.todo-app-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap; /* 小画面でも崩れないように折り返す */
+}
+
+.todo-list-area {
+    flex: 1; /* 左右のエリアが均等な幅になるように設定 */
+    min-width: 300px;
+    padding: 15px;
+    background-color: var(--main-bg-color);
+    border: 2px dashed #ccc; /* ドロップ可能であることを示す */
+    border-radius: 8px;
+    min-height: 200px; /* ドロップしやすいように最低高を設定 */
+}
+
+.todo-list-area h3 {
+    color: var(--accent-color);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.todo-task-item {
+    background-color: var(--section-bg-color);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    cursor: grab; /* 掴めるカーソル */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    transition: opacity 0.3s;
+}
+
+.todo-task-item p {
+    margin: 0;
+    font-weight: 500;
+}
+.todo-task-item span {
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* ⭐️ ドラッグ中のスタイル ⭐️ */
+.todo-task-item.dragging {
+    opacity: 0.4; /* 半透明にして、元の位置から移動中だと示す */
+    border: 1px dashed var(--accent-color);
+}
+
+/* 完了エリアのスタイル */
+.todo-task-item.completed {
+    background-color: #e6ffe6; /* 薄い緑 */
+    border-left: 5px solid #20c997;
+}
+
+
+/*テキスト切り替えのスマート化*/
+.todo-task-item span {
+    /* 擬似要素を配置するために、positionをrelativeに設定 */
+    position: relative; 
+    display: inline-block;
+}
+
+/* タスクが完了状態（.completed）になった時 */
+.todo-task-item.completed span {
+    /* 1. 元のテキスト（例: (優先度: 高)）を非表示にする */
+    visibility: hidden; 
+}
+
+/* タスクが完了状態の時に、spanの後に新しいテキストを挿入 */
+.todo-task-item.completed span::after {
+    /* 2. 挿入するテキストを指定 */
+    content: "(完了済み)";
+
+    /* 3. 非表示にした元のテキストの位置に重ねて表示する */
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #666; /* 色を元の優先度表示に合わせる */
+    font-weight: normal;
+}
+
+/* 12. アニメーション制御用のスタイル */
+@keyframes rotate-360 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animation-control-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.animated-box {
+    width: 120px;
+    height: 120px;
+    background-color: var(--accent-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 20px;
+
+    /* ⭐️ 初期アニメーション設定 ⭐️ */
+    animation-name: rotate-360;/* 4秒で線形に無限回転 */
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.animation-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.animation-controls button {
+    width: 180px;
+    flex: 0 0 auto;
+    white-space: nowrap;/* テキストの折り返しを防ぎ、幅の計算を安定させる*/
+    text-align: center;
+}
+
+/* ⭐️ 停止時のクラス ⭐️ */
+.animated-box.paused {
+    animation-play-state: paused;/* これでアニメーションが停止する */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* 停止していることを強調 */
+    
+}
+
+/* 13. モーダルウィンドウの表示 */
+.gallery {
+    display: grid;
+    /* 画面サイズに応じて列数が変わるように設定 */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.work-item {
+    width: 100%;
+    /* クリック可能であることを示すカーソル */
+    cursor: pointer;
+    overflow: hidden; /* imgがwork-itemからはみ出ないように */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.work-item img.thumbnail {
+    /* 画像をwork-itemの幅いっぱいに広げ、アスペクト比を維持しつつ画像を埋める */
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; /* 画像がコンテナを埋めるように拡大/縮小 */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.work-item img.thumbnail:hover {
+    transform: scale(1.05); /* ホバーで少し拡大するアニメーション */
+}
+
+/*
+ * ============================================
+ * 3. スライドショー
+ * ============================================
+ */
+.slideshow-container {
+    width: 100%;
+    overflow: hidden;
+    height: 120px; /* 高さを少し上げる */
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.slideshow-track {
+    display: flex;
+    width: fit-content;
+    height: 100%;
+    animation: headerScroll 60s linear infinite;
+}
+
+.slideshow-track:hover {
+    animation-play-state: paused;
+}
+
+.slideshow-track img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    filter: brightness(0.7); /* 暗くしてテキストの視認性を確保 */
+    flex-shrink: 0;
+}
+
+@keyframes headerScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+
+/* ------------------------------------------------- */
+/* モーダルウィンドウのスタイル */
+/* ------------------------------------------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* ⭐️ モーダルが表示されているときのスタイルを分離 ⭐️ */
+.modal-visible {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 500px;
+    max-height: 90%;
+    object-fit: contain;/* 画像をアスペクト比を維持したまま収める */
+    border-radius: 5px;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    z-index: 990;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+    color: #bbb;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)}
+    to {transform: scale(1)}
+}
+
+#modal-caption {
+    margin-top: 15px;
+    color: var(--main-text-color);
+    font-size: 18px;
+}
+
+
+/*
+ * ============================================
+ * フッター
+ * ============================================
+ */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+    color: #666;
+    background-color: var(--main-bg-color);
+}
+
+/*
+ * ============================================
+ * レスポンシブデザイン (モバイル向け)
+ * ============================================
+ */
+@media (max-width: 768px) {
+    .header-text {
+        padding: 20px 15px;
+    }
+    .header-text h1 {
+        font-size: 1.8em;
+    }
+    .js-work-section {
+        margin: 20px 10px;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    .main-nav {
+        padding: 0 10px;
+        justify-content: flex-start;
+    }
+    .nav-link {
+        text-align: center;
+        padding: 10px 5px;
+        flex-grow: 0;
+    }
+    .slideshow-container {
+        height: 80px; /* モバイルでは高さを抑える */
+    }
+}
+
+
+/*
+ * ============================================
+ * ⭐️ ダークモード用のスタイル定義 ⭐️
+ * ============================================
+ */
+body.dark-mode {
+    --main-bg-color: #1e1e1e;
+    --main-text-color: #f0f0f0;
+    --section-bg-color: #121212;
+    --accent-color: #00c0c0; /* ダークモードでの強調色 */
+    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.5); /* 影を調整 */
+
+    background-color: var(--section-bg-color);
+    color: var(--main-text-color);
+}
+
+body.dark-mode header {
+    background-color: var(--main-bg-color);
+    border-bottom: 1px solid #333;
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .main-top {
+    background-color: rgba(0, 0, 0, 0.4); /* 暗くしたい色（黒）と透明度（0.4=40%）を指定 */
+    background-blend-mode: multiply; /* 画像と色を「乗算」して暗くするモード */
+}
+
+body.dark-mode .top-text {
+    color: #ccc;
+}
+
+/*14. フィルタリング・ソート機能のスタイル*/
+body.dark-mode .filter-sort-controls .filter-btn {
+    border: 1px solid #555;
+    color: #eee;
+}
+body.dark-mode .filter-sort-controls .filter-btn.active {
+    background-color: var(--accent-color);
+    color: var(--main-bg-color);
+}
+body.dark-mode #sort-selector {
+    border: 1px solid #555;
+    background-color: #2a2a2a;
+}
+
+body.dark-mode .js-work-section {
+    background-color: var(--main-bg-color);
+    box-shadow: var(--shadow-light);
+}
+
+body.dark-mode .feature-demo {
+    background-color: #2a2a2a;
+    border-left-color: var(--accent-color);
+}
+
+body.dark-mode .tech-notes {
+    background-color: #2a2a2a;
+}
+body.dark-mode .tech-notes h3 {
+    border-left-color: var(--accent-color);
+}
+
+body.dark-mode .menu-toggle-btn:hover {
+    background-color: #009999;
+}
+
+body.dark-mode .menu-close-btn:hover {
+    background-color: #009999;
+}
+
+body.dark-mode .nav-link {
+    color: var(--main-text-color);
+}
+
+body.dark-mode .nav-link:hover {
+    background-color: #333;
+}
+
+body.dark-mode .nav-link.active { 
+    font-weight: normal;
+    background-color: var(--accent-color);
+    color: var(--main-bg-color);
+}
+
+body.dark-mode .nav-link.active:hover {
+    background-color: #009999;
+}
+
+body.dark-mode #header-theme-toggle-btn {
+    background-color: var(--accent-color); 
+}
+
+body.dark-mode #header-theme-toggle-btn:hover {
+     background-color: #009999;
+}
+
+
+/* ローディング */
+body.dark-mode #loader-wrapper {
+    background-color: var(--section-bg-color);
+}
+body.dark-mode .loader {
+    border: 8px solid #333;
+    border-top: 8px solid var(--accent-color);
+}
+
+/* ボタン/入力欄 */
+body.dark-mode #theme-toggle-btn {
+    background-color: var(--accent-color);
+}
+body.dark-mode #theme-toggle-btn:hover {
+    background-color: #009999;
+}
+
+body.dark-mode .text-input,
+body.dark-mode textarea.text-input,
+body.dark-mode input.text-input {
+    background-color: #333;
+    color: #f0f0f0;
+    border-color: #555;
+}
+body.dark-mode .text-input:focus,
+body.dark-mode textarea.text-input:focus,
+body.dark-mode input.text-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 192, 192, 0.25);
+}
+
+body.dark-mode .counter-display {
+    color: #aaa;
+}
+body.dark-mode #char-count {
+    color: var(--accent-color);
+}
+
+body.dark-mode .slideshow-track img {
+    filter: brightness(0.4);
+}
+
+body.dark-mode footer {
+    background-color: var(--main-bg-color);
+    border-top: 1px solid #333;
+    color: #aaa;
+}
+
+/* フォーム検証（色調整） */
+body.dark-mode #email-input.input-success {
+    border-color: #20c997;
+}
+body.dark-mode #email-input.input-error {
+    border-color: #ff6b6b;
+}
+body.dark-mode .success-message {
+    color: #20c997;
+}
+body.dark-mode .error-message {
+    color: #ff6b6b;
+}
+
+/* リセットボタン */
+body.dark-mode .reset-button {
+    background-color: #777;
+}
+body.dark-mode .reset-button:hover {
+    background-color: #888;
+}
+
+/* 9. Fetch API データ表示用のスタイル */
+body.dark-mode .data-display-container {
+    background-color: #2a2a2a;
+}
+body.dark-mode .user-card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+}
+body.dark-mode .user-card h3 {
+    border-bottom: 1px solid #333;
+}
+
+/* 10. ランダム雑学表示用のスタイル */
+body.dark-mode .fact-display-container {
+    background-color: #1e1e1e;
+    border-color: var(--accent-color);
+    color: var(--main-text-color);
+}
+
+/* 11. ドラッグ＆ドロップ ToDoリストのスタイル */
+body.dark-mode .todo-list-area {
+    background-color: #1e1e1e;
+    border-color: #444;
+}
+
+body.dark-mode .todo-list-area h3 {
+    border-bottom: 2px solid #333;
+}
+
+body.dark-mode .todo-task-item {
+    background-color: #333;
+    border: 1px solid #444;
+}
+
+body.dark-mode .todo-task-item.completed {
+    background-color: #2a3a2a; /* ダークモードの薄い緑 */
+    border-left: 5px solid #20c997;
+}
+
+
+/* 12. アニメーション制御用のスタイル */
+body.dark-mode .animated-box {
+    background-color: #00c0c0;
+}
+
+/* 13.モーダルウィンドウの表示 */
+body.dark-mode .work-item {
+    border-color: #333;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
+}
+
+/* モーダルウィンドウのスタイル */
+body.dark-mode .modal-content {
+    /* 必要に応じて拡大画像の明るさなどを調整 */
+}
