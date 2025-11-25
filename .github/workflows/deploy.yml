@@ -21,13 +21,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
-          # 💡 ここが唯一の入力です。static_site_generator: custom のみ！
+          # publicフォルダからデプロイする設定
           static_site_generator: custom 
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # publicフォルダを指定
+          # アップロード対象を public フォルダに指定
           path: 'public' 
           
       - name: Deploy to GitHub Pages
