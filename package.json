@@ -1,0 +1,24 @@
+{
+  "name": "myillustrationportfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js-works.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Takenocomic/my-illustration-Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Takenocomic/my-illustration-Portfolio/issues"
+  },
+  "homepage": "https://github.com/Takenocomic/my-illustration-Portfolio#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
