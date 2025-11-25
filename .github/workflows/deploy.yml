@@ -1,4 +1,5 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches:
@@ -26,7 +27,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # publicフォルダの中身をアップロード対象として指定
           path: 'public' 
           
       - name: Deploy to GitHub Pages
