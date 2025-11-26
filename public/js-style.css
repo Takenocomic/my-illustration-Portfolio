@@ -12,184 +12,18 @@
     --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-body {
-    translate: yes; /* ページの言語を日本語として扱うようブラウザに指示 */
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--section-bg-color); /* 背景色をセクション外の領域に設定 */
-    color: var(--main-text-color);
-    line-height: 1.6; /* 読みやすさ向上のため行間を広げる */
-}
-
-
-main {
-    margin-top: 80px;
-}
-
-h2, h3 {
-    color: var(--main-text-color);
-    margin-top: 0;
-    margin-bottom: 0.5em;
-}
-
-/*
- * ============================================
- * ローディングアニメーション
- * ============================================
- */
-#loader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--main-bg-color);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    transition: opacity 0.5s ease-out, visibility 0.5s;
-    visibility: visible;
-}
-
-#loader-wrapper.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loader {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid var(--accent-color);
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1.5s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 
 /*
  * ============================================
  * ヘッダーとナビゲーション
  * ============================================
  */
-header {
-    display: flex;
-    width:  100%;
-    height: 80px;
-    position: fixed;
-    top: 0;
-    z-index: 10;
+.header-content {
+    background: url(/js-portfolio-server/public/images/js-header-bg3.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
 
-    background-color: var(--main-bg-color);
-    border-bottom: 1px solid #e0e0e0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
-
-/*上部タブ*/
-.main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    background-color: var(--main-bg-color);
-    box-shadow: var(--shadow-light);
-    /* リンクの配置 */
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.nav-links-group {
-    display: flex;
-    margin-left: 20px;
-    gap: 20px;
-}
-
-
-.main-nav .nav-link  {
-    display: block;
-    padding: 10px 15px;
-    background-color: var(--section-bg-color);
-    color: var(--main-text-color);
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.nav-link:hover {
-    background-color: #e0e0e0 ; /* ホバー時は薄い色 */
-    color: var(--main-text-color);
-}
-.nav-link.active { 
-    background-color: var(--accent-color);
-    color: var(--main-bg-color); 
-}
-
-.nav-link.active:hover {
-    background-color: #0056b3;
-}
-
-.theme-switch-container {
-    position: absolute;
-    margin-right: 20px;
-}
-
-#header-theme-toggle-btn {
-    display: block;
-    padding: 10px 15px;
-    background-color: var(--accent-color);
-    color: var(--main-bg-color);
-    font-size: 15px;
-    cursor: pointer;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-#header-theme-toggle-btn:hover {
-    background-color: #0056b3;
-}
-
-/*メインヘッダー*/
-.main-top{
-    flex-grow: 1;
-    align-items: center;
-    background-image: url('images/js-header-bg2.jpg'); /* 実際のファイルパスに修正してください */
-    background-size: cover;      /* 画像が要素全体を覆うように拡大・縮小 */
-    background-position: center; /* 画像を中央に配置 */
-    background-repeat: no-repeat;/* 画像の繰り返しをなしにする */
-    min-height: 250px; /* 最低250pxの高さを持たせる */
-    width: 100%; /* 横幅も確保 */
-    margin-top: 0;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-.top-text {
-    color: var(--main-bg-color);
-}
-.top-text h1 {
-    font-size: 2.5em;
-}
-.top-text p {
-    font-size: 1.2em;
-}
-
 
 /* 14. データフィルタリング・ソート機能 */
 .filter-sort-controls{
@@ -298,25 +132,6 @@ header {
  * パーツスタイル (ボタン、入力欄、カウンター)
  * ============================================
  */
-
-/* 1. ダークモードボタン */
-#theme-toggle-btn {
-    background-color: var(--accent-color);
-    color: var(--main-bg-color);
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s, transform 0.1s;
-    margin-top: 10px;
-}
-
-#theme-toggle-btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-1px);
-}
-
 /* 8. リセットボタン */
 .reset-button {
     background-color: #6c757d;
@@ -753,26 +568,19 @@ footer {
  * ============================================
  */
 @media (max-width: 768px) {
-    .header-text {
-        padding: 20px 15px;
+    .theme-switch-container {
+        position: static !important; /* absolute を解除し、ナビゲーションの下に配置する */
+        margin: 0 auto; /* 中央寄せ */
+        width: 90%;
+        text-align: center;
     }
-    .header-text h1 {
-        font-size: 1.8em;
-    }
+
     .js-work-section {
         margin: 20px 10px;
         padding: 20px;
         border-radius: 8px;
     }
-    .main-nav {
-        padding: 0 10px;
-        justify-content: flex-start;
-    }
-    .nav-link {
-        text-align: center;
-        padding: 10px 5px;
-        flex-grow: 0;
-    }
+
     .slideshow-container {
         height: 80px; /* モバイルでは高さを抑える */
     }
@@ -784,31 +592,6 @@ footer {
  * ⭐️ ダークモード用のスタイル定義 ⭐️
  * ============================================
  */
-body.dark-mode {
-    --main-bg-color: #1e1e1e;
-    --main-text-color: #f0f0f0;
-    --section-bg-color: #121212;
-    --accent-color: #00c0c0; /* ダークモードでの強調色 */
-    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.5); /* 影を調整 */
-
-    background-color: var(--section-bg-color);
-    color: var(--main-text-color);
-}
-
-body.dark-mode header {
-    background-color: var(--main-bg-color);
-    border-bottom: 1px solid #333;
-    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
-}
-
-body.dark-mode .main-top {
-    background-color: rgba(0, 0, 0, 0.4); /* 暗くしたい色（黒）と透明度（0.4=40%）を指定 */
-    background-blend-mode: multiply; /* 画像と色を「乗算」して暗くするモード */
-}
-
-body.dark-mode .top-text {
-    color: #ccc;
-}
 
 /*14. フィルタリング・ソート機能のスタイル*/
 body.dark-mode .filter-sort-controls .filter-btn {
@@ -841,48 +624,14 @@ body.dark-mode .tech-notes h3 {
     border-left-color: var(--accent-color);
 }
 
-body.dark-mode .menu-toggle-btn:hover {
-    background-color: #009999;
-}
 
-body.dark-mode .menu-close-btn:hover {
-    background-color: #009999;
-}
 
-body.dark-mode .nav-link {
-    color: var(--main-text-color);
-}
-
-body.dark-mode .nav-link:hover {
-    background-color: #333;
-}
-
-body.dark-mode .nav-link.active { 
-    font-weight: normal;
-    background-color: var(--accent-color);
-    color: var(--main-bg-color);
-}
-
-body.dark-mode .nav-link.active:hover {
-    background-color: #009999;
-}
-
-body.dark-mode #header-theme-toggle-btn {
+body.dark-mode #theme-toggle-btn {
     background-color: var(--accent-color); 
 }
 
-body.dark-mode #header-theme-toggle-btn:hover {
+body.dark-mode #theme-toggle-btn:hover {
      background-color: #009999;
-}
-
-
-/* ローディング */
-body.dark-mode #loader-wrapper {
-    background-color: var(--section-bg-color);
-}
-body.dark-mode .loader {
-    border: 8px solid #333;
-    border-top: 8px solid var(--accent-color);
 }
 
 /* ボタン/入力欄 */

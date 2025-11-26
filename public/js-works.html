@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript 成果物一覧 - ポートフォリオ</title>
+    <title>【竹本_尚史】JavaScript 成果物一覧 - ポートフォリオ</title>
     <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="js-style.css"> 
 </head>
@@ -13,6 +13,7 @@
         <div class="loader"></div>
     </div>
 
+    
     <header>
         <nav class="main-nav">
             <div class="nav-links-group">
@@ -21,21 +22,28 @@
             </div>
             
             <div class="theme-switch-container">
-                <button id="header-theme-toggle-btn" class="theme-toggle-btn" aria-label="テーマ切り替え">
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="テーマ切り替え">
                     ライトモード/ダークモード
                 </button>
             </div>
         </nav>
-    </header>
 
-    <main>
-        <div class="main-top">
-            <div class="top-text">
-                <h1>JavaScript Works</h1>
-                <p>JavaScriptで実装した機能のデモンストレーションです。</p>
+        <div class="header-top-display">
+            <div class="header-image-container" id="header-image-container">
+                <div class="js-header-img"></div>
+            </div>
+
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>JavaScript Works</h1>
+                    <p>JavaScriptで実装した機能のデモンストレーションです。</p>
+                </div>
             </div>
         </div>
+        </header>
 
+
+    <main>
         <div class="filter-sort-controls">
             <div class="filter-buttons-group">
                 <button data-filter="all" class="filter-btn active">すべて</button>
@@ -58,7 +66,7 @@
         <section class="js-work-section" data-category="UI/UX">
             <h2>1. ダークモード切り替え</h2>
             <div class="feature-demo">
-                <button id="theme-toggle-btn" class="theme-toggle-btn">テーマ切り替え</button>
+                <button id="theme-toggle" class="theme-toggle-btn">テーマ切り替え</button>
                 <p>このボタンでサイト全体の配色（ダーク/ライト）が切り替わります。</p>
             </div>
             
