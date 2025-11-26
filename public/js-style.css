@@ -19,7 +19,7 @@
  * ============================================
  */
 .header-content {
-    background: url(../public/images/js-header-bg3.jpg);
+    background: url(/my-illustration-Portfolio/public/images/js-header-bg3.jpg);
     background-size: cover;
     background-position: 50% 50%;
 
