@@ -44,331 +44,356 @@
 
 
     <main>
-        <div class="filter-sort-controls">
-            <div class="filter-buttons-group">
-                <button data-filter="all" class="filter-btn active">すべて</button>
-                <button data-filter="UI/UX" class="filter-btn">UI/UX機能</button>
-                <button data-filter="API/Data" class="filter-btn">API・データ機能</button>
-                <button data-filter="Storage/Utility" class="filter-btn">Storage・Utility機能</button>
-                <button data-filter="Advanced" class="filter-btn">応用機能</button>
-            </div>
-
-            <div class="sort-controls-group">
-                <label for="sort-selector">並び替え</label>
-                <select id="sort-selector">
-                    <option value="asc" selected>古い順(昇順)</option>
-                    <option value="desc" >新しい順(降順)</option>
-                </select>
-            </div>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="js-front">🎨 フロントエンド (JS)</button>
+            <button class="tab-button" data-tab="js-back">💻 バックエンド (Node.js)</button>
         </div>
 
 
-        <section class="js-work-section" data-category="UI/UX">
-            <h2>1. ダークモード切り替え</h2>
-            <div class="feature-demo">
-                <button id="theme-toggle" class="theme-toggle-btn">テーマ切り替え</button>
-                <p>このボタンでサイト全体の配色（ダーク/ライト）が切り替わります。</p>
-            </div>
-            
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**DOM操作**：ボタンクリックイベントの検出。</li>
-                    <li>**CSS変数** (`--main-bg-color`, `--main-text-color`) を使用して、一つのクラス切り替えで全体を制御。</li>
-                </ul>
-            </div>
-        </section>
+        <div id="js-front-content" class="works-tab-content">
 
-        <section class="js-work-section" data-category="UI/UX">
-            <h2>2. リアルタイム文字数カウンター</h2>
-            <div class="feature-demo">
-                <p>下のテキストエリアに文字を入力すると、その文字数を計測します。</p>
+            <div class="filter-sort-controls">
+                <div class="filter-buttons-group">
+                    <button data-filter="all" class="filter-btn active">すべて</button>
+                    <button data-filter="UI/UX" class="filter-btn">UI/UX機能</button>
+                    <button data-filter="API/Data" class="filter-btn">API・データ機能</button>
+                    <button data-filter="Storage/Utility" class="filter-btn">Storage・Utility機能</button>
+                    <button data-filter="Advanced" class="filter-btn">応用機能</button>
+                </div>
+
+                <div class="sort-controls-group">
+                    <label for="sort-selector">並び替え</label>
+                    <select id="sort-selector">
+                        <option value="asc" selected>古い順(昇順)</option>
+                        <option value="desc" >新しい順(降順)</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="text-counter-container">
-                <textarea id="text-input" class="text-input" rows="5" placeholder="ここに文字を入力してください．．．"></textarea>
-                <p class="counter-display">
-                    現在の文字数: <span id="char-count">0</span> 文字
-                </p>
-                <button class="reset-button" data-target-id="text-input">入力内容をすべてリセット</button>
-            </div>
 
-        </section>
-
-        <section class="js-work-section" data-category="UI/UX">
-            <h2>3. スライドショー</h2>
-            <div class="slideshow-container" id="slideshow-container">
-                <div class="slideshow-track" id="slideshow-track">
+            <section class="js-work-section" data-category="UI/UX">
+                <h2>1. ダークモード切り替え</h2>
+                <div class="feature-demo">
+                    <button id="theme-toggle" class="theme-toggle-btn">テーマ切り替え</button>
+                    <p>このボタンでサイト全体の配色（ダーク/ライト）が切り替わります。</p>
+                </div>
                 
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**DOM操作**：ボタンクリックイベントの検出。</li>
+                        <li>**CSS変数** (`--main-bg-color`, `--main-text-color`) を使用して、一つのクラス切り替えで全体を制御。</li>
+                    </ul>
                 </div>
-            </div>
+            </section>
 
-            <div class="feature-demo">
-                <p>ヘッダーに配置されたイラスト画像が無限に横にスクロールし続けます。</p>
-                <p>ホバーするとアニメーションが一時停止します。</p>
-            </div>
-            
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**JavaScript**：スライドショーを無限ループさせるため、表示したい画像セットをトラック要素内に**複製して**追加しています。</li>
-                    <li>**CSS (`@keyframes`)**：複製によりコンテンツ全体の幅が元の2倍になっていることを利用し、**幅の50%**だけ移動するアニメーションを無限ループで適用しています。</li>
-                    <li>**CSS (`flex`)**：画像要素を横一列に並べ、アニメーションでトラック全体を移動させています。</li>
-                </ul>
-            </div>
-        </section>
+            <section class="js-work-section" data-category="UI/UX">
+                <h2>2. リアルタイム文字数カウンター</h2>
+                <div class="feature-demo">
+                    <p>下のテキストエリアに文字を入力すると、その文字数を計測します。</p>
+                </div>
 
+                <div class="text-counter-container">
+                    <textarea id="text-input" class="text-input" rows="5" placeholder="ここに文字を入力してください．．．"></textarea>
+                    <p class="counter-display">
+                        現在の文字数: <span id="char-count">0</span> 文字
+                    </p>
+                    <button class="reset-button" data-target-id="text-input">入力内容をすべてリセット</button>
+                </div>
 
-        <section class="js-work-section" data-category="UI/UX">
-            <h2>4. スクロール時の要素フェードイン機能</h2>
+            </section>
 
-            <div class="feature-demo">
-                <p>画面を下にスクロールすると、各セクションが下から滑らかにフェードインして表示されます。</p>
-                <p>一度表示された要素は、それ以降アニメーションを繰り返しません。</p>
-            </div>
-            
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**Intersection Observer API**：セクション要素がブラウザのビューポート（画面領域）と**交差**（Intersection）したかどうかを非同期的に監視するために使用します。</li>
-                    <li>**監視（Observe）**：要素が画面内に**20%** (`threshold: 0.2`) 入ったのを検出すると、JavaScript側の処理が実行されます。</li>
-                    <li>**CSSアニメーション**：交差が検出された後、JavaScriptが要素に **`appear`** クラスを付与します。このクラスが付与されると、CSSの `transition` (`opacity` と `transform`) が発動し、フェードインの動きが実現します。</li>
-                    <li>**監視の停止（Unobserve）**：アニメーションが一度完了したら、`observer.unobserve()` を実行して監視を停止し、処理の負荷を軽減しています。</li>
-                </ul>
-            </div>
-        </section>
+            <section class="js-work-section" data-category="UI/UX">
+                <h2>3. スライドショー</h2>
+                <div class="slideshow-container" id="slideshow-container">
+                    <div class="slideshow-track" id="slideshow-track">
+                    
+                    </div>
+                </div>
 
-
-        <section class="js-work-section" data-category="UI/UX">
-            <h2>5. ローディングアニメーション</h2>
-            <div class="feature-demo">
-                <p>ページ内のすべてのリソース（画像、CSS、JSなど）の読み込みが完了するまで、画面全体を覆うローディング表示を行います。</p>
-                <p>読み込み完了後は、滑らかにフェードアウトしてコンテンツを表示します。</p>
-            </div>
-            
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**HTML/CSS（表示）**：`position: fixed` と高い `z-index` を使用して、ローディング要素を画面全体に固定し、他のコンテンツの**一番手前**に表示させています。</li>
-                    <li>**CSS (`@keyframes`)**：ローディング中の**円の回転アニメーション**は、`@keyframes` の `spin` で定義し、`transform: rotate(360deg)` を無限ループさせて実現しています。</li>
-                    <li>**JavaScript (`window.onload`)**：HTMLやCSSだけでなく、**全ての外部リソース（画像など）の読み込みが完了**するのを待つために `window.onload` イベントを使用しています。</li>
-                    <li>**JavaScript/CSS（非表示）**：`window.onload` が発火した後、JavaScriptでローディング要素に `hidden` クラスを付与します。このクラスの `opacity: 0` と `visibility: hidden` がCSSの `transition` によって**フェードアウト**の動きを生み出します。</li>
-                </ul>
-            </div>
-        </section>
-
-
-        <section class="js-work-section" data-category="UI/UX">
-            <h2>6. リアルタイム入力フォーム検証</h2>
-            <div class="feature-demo">
-                <p>フォームにメールアドレスを入力すると、JavaScriptがリアルタイムで形式をチェックします。</p>
+                <div class="feature-demo">
+                    <p>ヘッダーに配置されたイラスト画像が無限に横にスクロールし続けます。</p>
+                    <p>ホバーするとアニメーションが一時停止します。</p>
+                </div>
                 
-                <div class="validation-container">
-                    <input type="text" id="email-input" class="text-input" placeholder="メールアドレスを入力してください">
-                    <button data-target-id="email-input" class="reset-button">入力内容をすべてリセット</button>
-                    <p id="validation-feedback" class="feedback error-message"></p>
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**JavaScript**：スライドショーを無限ループさせるため、表示したい画像セットをトラック要素内に**複製して**追加しています。</li>
+                        <li>**CSS (`@keyframes`)**：複製によりコンテンツ全体の幅が元の2倍になっていることを利用し、**幅の50%**だけ移動するアニメーションを無限ループで適用しています。</li>
+                        <li>**CSS (`flex`)**：画像要素を横一列に並べ、アニメーションでトラック全体を移動させています。</li>
+                    </ul>
                 </div>
-            </div>
-            
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**JavaScript (`input`イベント)**：ユーザーが文字を入力するたびにイベントを捕捉し、即座に検証関数を実行します。</li>
-                    <li>**正規表現（Regex）**：文字列のパターン（この場合はメールアドレスの形式）を定義し、入力値がそのパターンに一致するかを高速にチェックします。</li>
-                    <li>**DOM操作とCSS**：検証結果に応じて、入力欄の枠線色（成功/失敗）やエラーメッセージの表示/非表示を動的に切り替えます。</li>
-                </ul>
-            </div>
-        </section>
+            </section>
 
 
-        <section class="js-work-section" data-category="Storage/Utility">
-            <h2>7. チェックボックスの状態記憶</h2>
-            <div class="feature-demo">
-                <input type="checkbox" id="remember-settings-checkbox">
-                <label for="remember-settings-checkbox">この設定を記憶する</label>
-                <p>チェックを入れた状態でページを再読み込みするか、ブラウザを閉じても、チェック状態が維持できます</p>
-            </div>
+            <section class="js-work-section" data-category="UI/UX">
+                <h2>4. スクロール時の要素フェードイン機能</h2>
 
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**Local Storage**：ブラウザにデータを永続的に保存するためのWeb Storage APIの一つです。サーバーへ送られることなく、クライアント（ユーザーのPC）側でのみ利用されます。</li>
-                    <li>**JavaScript (`setItem`, `getItem`)**：チェックボックスの状態が変更された際に `setItem` で状態を保存し、ページロード時に `getItem` で状態を読み出してチェックを復元します。</li>
-                    <li>**データ型**：Local Storageは文字列しか保存できないため、チェック状態（`true` または `false`）を文字列として保存・読み出しの際に真偽値に変換して扱います。</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="js-work-section" data-category="UI/UX">
-            <h2>8. 入力文字のリセットボタン</h2>
-            <div class="feature-demo">
-                <div class="reset-sample-container">
-                    <input type="text" id="reset-sample-input" class="text-input" placeholder="文字を入力してください．．．">
-                    <button data-target-id="reset-sample-input" class="reset-button">入力内容をすべてリセット</button>
+                <div class="feature-demo">
+                    <p>画面を下にスクロールすると、各セクションが下から滑らかにフェードインして表示されます。</p>
+                    <p>一度表示された要素は、それ以降アニメーションを繰り返しません。</p>
                 </div>
-            </div>
-            
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**DOM要素の個別特定**：各ボタンに **`data-target-id`** というカスタム属性を設定し、クリックされたボタンのこの属性値を読み出すことで、どの入力フィールドをリセットするのかを**個別**に特定しています。</li>
-                    <li>**イベント委譲と一括処理**：`document.querySelectorAll('.reset-button')` でページ上の全てのリセットボタンを一括取得し、`forEach`で共通のイベントリスナーを設定しています。</li>
-                    <li>**状態の同期**：入力内容をクリアした後、既存の **`updateCounter()`** 関数を呼び出す、または検証メッセージのクラスを削除するなどして、**関連する表示要素の状態も同時に初期値に戻す**処理を行っています。</li>
-                </ul>
-            </div>
-        </section>
-
-
-        <section class="js-work-section" data-category="API/Data">
-            <h2>9. 外部APIからのデータ取得と表示</h2>
-            <div class="feature-demo">
-                <p>外部API（JSONPlaceholder）からユーザー情報を取得し、カード形式で表示します。</p>
-                <button id="fetch-data-btn" class="reset-button">ユーザーデータを取得して表示</button>
-                <div id="user-list-container" class="data-display-container">
-                    <p>ボタンを押してデータを読み込んでください。</p>
+                
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**Intersection Observer API**：セクション要素がブラウザのビューポート（画面領域）と**交差**（Intersection）したかどうかを非同期的に監視するために使用します。</li>
+                        <li>**監視（Observe）**：要素が画面内に**20%** (`threshold: 0.2`) 入ったのを検出すると、JavaScript側の処理が実行されます。</li>
+                        <li>**CSSアニメーション**：交差が検出された後、JavaScriptが要素に **`appear`** クラスを付与します。このクラスが付与されると、CSSの `transition` (`opacity` と `transform`) が発動し、フェードインの動きが実現します。</li>
+                        <li>**監視の停止（Unobserve）**：アニメーションが一度完了したら、`observer.unobserve()` を実行して監視を停止し、処理の負荷を軽減しています。</li>
+                    </ul>
                 </div>
-            </div>
+            </section>
 
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**Fetch API**：ネットワーク越しにリソースを取得するための最新のAPIを使用。</li>
-                    <li>**非同期処理 (`async`/`await`)**：データ取得の完了を待ってから次の処理を実行し、UIのフリーズを防ぐ方法を習得。</li>
-                    <li>**動的なDOM生成**：取得したデータに基づいて、HTML要素をJavaScriptで生成し、ページに挿入しています。</li>
-                </ul>
-            </div>
-        </section>
 
-        <section class="js-work-section" data-category="API/Data">
-            <h2>10. ランダムな雑学の取得 (Fetch API 応用)</h2>
-            <div class="feature-demo">
-                <p>ボタンを押すと、外部APIからランダムな猫の豆知識を取得・表示します。</p>
-                <button id="fetch-fact-btn" class="reset-button">新しい雑学を取得</button>
-                <div id="cat-fact-display" class="fact-display-container">
-                    ここに雑学が表示されます。
+            <section class="js-work-section" data-category="UI/UX">
+                <h2>5. ローディングアニメーション</h2>
+                <div class="feature-demo">
+                    <p>ページ内のすべてのリソース（画像、CSS、JSなど）の読み込みが完了するまで、画面全体を覆うローディング表示を行います。</p>
+                    <p>読み込み完了後は、滑らかにフェードアウトしてコンテンツを表示します。</p>
                 </div>
-            </div>
+                
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**HTML/CSS（表示）**：`position: fixed` と高い `z-index` を使用して、ローディング要素を画面全体に固定し、他のコンテンツの**一番手前**に表示させています。</li>
+                        <li>**CSS (`@keyframes`)**：ローディング中の**円の回転アニメーション**は、`@keyframes` の `spin` で定義し、`transform: rotate(360deg)` を無限ループさせて実現しています。</li>
+                        <li>**JavaScript (`window.onload`)**：HTMLやCSSだけでなく、**全ての外部リソース（画像など）の読み込みが完了**するのを待つために `window.onload` イベントを使用しています。</li>
+                        <li>**JavaScript/CSS（非表示）**：`window.onload` が発火した後、JavaScriptでローディング要素に `hidden` クラスを付与します。このクラスの `opacity: 0` と `visibility: hidden` がCSSの `transition` によって**フェードアウト**の動きを生み出します。</li>
+                    </ul>
+                </div>
+            </section>
 
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**単一データの処理**：前回とは異なり、配列ではなく一つのJSONオブジェクトを受け取り、特定のプロパティ（`fact`）だけを取り出して表示する方法を習得します。</li>
-                    <li>**テキストコンテンツの更新**：HTML要素全体を再構築せず、テキストの内容だけを更新する方法を学びます。</li>
-                </ul>
-            </div>
-        </section>
 
-        <section class="js-work-section" data-category="Advanced">
-            <h2>11. ドラッグ＆ドロップ機能 (ToDoリスト)</h2>
-            <div class="feature-demo">
-                <p>タスクをドラッグして「未完了」エリアから「完了」エリアへ移動させてみましょう。</p>
-                <div class="todo-app-container">
-                    <div id="todo-pending" class="todo-list-area" data-status="pending">
-                        <h3>未完了タスク 📝</h3>
-                        <div id="task-1" class="todo-task-item" draggable="true">
-                            <p>JavaScriptの機能を実装する</p>
-                            <span>(優先度: 高)</span>
+            <section class="js-work-section" data-category="UI/UX">
+                <h2>6. リアルタイム入力フォーム検証</h2>
+                <div class="feature-demo">
+                    <p>フォームにメールアドレスを入力すると、JavaScriptがリアルタイムで形式をチェックします。</p>
+                    
+                    <div class="validation-container">
+                        <input type="text" id="email-input" class="text-input" placeholder="メールアドレスを入力してください">
+                        <button data-target-id="email-input" class="reset-button">入力内容をすべてリセット</button>
+                        <p id="validation-feedback" class="feedback error-message"></p>
+                    </div>
+                </div>
+                
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**JavaScript (`input`イベント)**：ユーザーが文字を入力するたびにイベントを捕捉し、即座に検証関数を実行します。</li>
+                        <li>**正規表現（Regex）**：文字列のパターン（この場合はメールアドレスの形式）を定義し、入力値がそのパターンに一致するかを高速にチェックします。</li>
+                        <li>**DOM操作とCSS**：検証結果に応じて、入力欄の枠線色（成功/失敗）やエラーメッセージの表示/非表示を動的に切り替えます。</li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <section class="js-work-section" data-category="Storage/Utility">
+                <h2>7. チェックボックスの状態記憶</h2>
+                <div class="feature-demo">
+                    <input type="checkbox" id="remember-settings-checkbox">
+                    <label for="remember-settings-checkbox">この設定を記憶する</label>
+                    <p>チェックを入れた状態でページを再読み込みするか、ブラウザを閉じても、チェック状態が維持できます</p>
+                </div>
+
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**Local Storage**：ブラウザにデータを永続的に保存するためのWeb Storage APIの一つです。サーバーへ送られることなく、クライアント（ユーザーのPC）側でのみ利用されます。</li>
+                        <li>**JavaScript (`setItem`, `getItem`)**：チェックボックスの状態が変更された際に `setItem` で状態を保存し、ページロード時に `getItem` で状態を読み出してチェックを復元します。</li>
+                        <li>**データ型**：Local Storageは文字列しか保存できないため、チェック状態（`true` または `false`）を文字列として保存・読み出しの際に真偽値に変換して扱います。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="js-work-section" data-category="UI/UX">
+                <h2>8. 入力文字のリセットボタン</h2>
+                <div class="feature-demo">
+                    <div class="reset-sample-container">
+                        <input type="text" id="reset-sample-input" class="text-input" placeholder="文字を入力してください．．．">
+                        <button data-target-id="reset-sample-input" class="reset-button">入力内容をすべてリセット</button>
+                    </div>
+                </div>
+                
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**DOM要素の個別特定**：各ボタンに **`data-target-id`** というカスタム属性を設定し、クリックされたボタンのこの属性値を読み出すことで、どの入力フィールドをリセットするのかを**個別**に特定しています。</li>
+                        <li>**イベント委譲と一括処理**：`document.querySelectorAll('.reset-button')` でページ上の全てのリセットボタンを一括取得し、`forEach`で共通のイベントリスナーを設定しています。</li>
+                        <li>**状態の同期**：入力内容をクリアした後、既存の **`updateCounter()`** 関数を呼び出す、または検証メッセージのクラスを削除するなどして、**関連する表示要素の状態も同時に初期値に戻す**処理を行っています。</li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <section class="js-work-section" data-category="API/Data">
+                <h2>9. 外部APIからのデータ取得と表示</h2>
+                <div class="feature-demo">
+                    <p>外部API（JSONPlaceholder）からユーザー情報を取得し、カード形式で表示します。</p>
+                    <button id="fetch-data-btn" class="reset-button">ユーザーデータを取得して表示</button>
+                    <div id="user-list-container" class="data-display-container">
+                        <p>ボタンを押してデータを読み込んでください。</p>
+                    </div>
+                </div>
+
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**Fetch API**：ネットワーク越しにリソースを取得するための最新のAPIを使用。</li>
+                        <li>**非同期処理 (`async`/`await`)**：データ取得の完了を待ってから次の処理を実行し、UIのフリーズを防ぐ方法を習得。</li>
+                        <li>**動的なDOM生成**：取得したデータに基づいて、HTML要素をJavaScriptで生成し、ページに挿入しています。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="js-work-section" data-category="API/Data">
+                <h2>10. ランダムな雑学の取得 (Fetch API 応用)</h2>
+                <div class="feature-demo">
+                    <p>ボタンを押すと、外部APIからランダムな猫の豆知識を取得・表示します。</p>
+                    <button id="fetch-fact-btn" class="reset-button">新しい雑学を取得</button>
+                    <div id="cat-fact-display" class="fact-display-container">
+                        ここに雑学が表示されます。
+                    </div>
+                </div>
+
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**単一データの処理**：前回とは異なり、配列ではなく一つのJSONオブジェクトを受け取り、特定のプロパティ（`fact`）だけを取り出して表示する方法を習得します。</li>
+                        <li>**テキストコンテンツの更新**：HTML要素全体を再構築せず、テキストの内容だけを更新する方法を学びます。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="js-work-section" data-category="Advanced">
+                <h2>11. ドラッグ＆ドロップ機能 (ToDoリスト)</h2>
+                <div class="feature-demo">
+                    <p>タスクをドラッグして「未完了」エリアから「完了」エリアへ移動させてみましょう。</p>
+                    <div class="todo-app-container">
+                        <div id="todo-pending" class="todo-list-area" data-status="pending">
+                            <h3>未完了タスク 📝</h3>
+                            <div id="task-1" class="todo-task-item" draggable="true">
+                                <p>JavaScriptの機能を実装する</p>
+                                <span>(優先度: 高)</span>
+                            </div>
+                            <div id="task-2" class="todo-task-item" draggable="true">
+                                <p>ポートフォリオのデザインを調整する</p>
+                                <span>(優先度: 中)</span>
+                            </div>
                         </div>
-                        <div id="task-2" class="todo-task-item" draggable="true">
-                            <p>ポートフォリオのデザインを調整する</p>
-                            <span>(優先度: 中)</span>
-                        </div>
-                    </div>
 
-                    <div id="todo-completed" class="todo-list-area completed-area" data-status="completed">
-                        <h3>完了タスク ✅</h3>
-                        <div id="task-3" class="todo-task-item completed" draggable="true">
-                            <p>CSSの変数を設定し終える</p>
-                            <span>(優先度: 低)</span>
+                        <div id="todo-completed" class="todo-list-area completed-area" data-status="completed">
+                            <h3>完了タスク ✅</h3>
+                            <div id="task-3" class="todo-task-item completed" draggable="true">
+                                <p>CSSの変数を設定し終える</p>
+                                <span>(優先度: 低)</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**`draggable`属性**: 要素をドラッグ可能にするためにHTML側で設定します。</li>
-                    <li>**`dataTransfer`オブジェクト**: ドラッグ開始時に移動するタスクのIDなどのデータを保存し、ドロップ時にそれを受け渡します。</li>
-                    <li>**イベントのデフォルト動作の無効化**: ブラウザの標準動作（リンクのドラッグなど）を止め、カスタムのドロップ処理を可能にする必要があります。</li>
-                </ul>
-            </div>
-        </section>
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**`draggable`属性**: 要素をドラッグ可能にするためにHTML側で設定します。</li>
+                        <li>**`dataTransfer`オブジェクト**: ドラッグ開始時に移動するタスクのIDなどのデータを保存し、ドロップ時にそれを受け渡します。</li>
+                        <li>**イベントのデフォルト動作の無効化**: ブラウザの標準動作（リンクのドラッグなど）を止め、カスタムのドロップ処理を可能にする必要があります。</li>
+                    </ul>
+                </div>
+            </section>
 
-        <section class="js-work-section" data-category="Advanced">
-            <h2>12. アニメーション制御 (CSS Animation応用)</h2>
-            <div class="feature-demo">
-                <p>下のボックスはCSSで回転しています。ボタンでそのアニメーションを制御してみましょう。</p>
-                <div class="animation-control-container">
-                    <div id="animated-box" class="animated-box">CSS Animation</div>
-                    <div class="animation-controls">
-                        <button id="toggle-animation-btn" class="reset-button">■ アニメーション停止</button>
-                        <button id="reset-animation-btn" class="reset-button">↻ リセット</button>
-                        <button id="speed-up-btn" class="reset-button">↑ 速度アップ</button>
+            <section class="js-work-section" data-category="Advanced">
+                <h2>12. アニメーション制御 (CSS Animation応用)</h2>
+                <div class="feature-demo">
+                    <p>下のボックスはCSSで回転しています。ボタンでそのアニメーションを制御してみましょう。</p>
+                    <div class="animation-control-container">
+                        <div id="animated-box" class="animated-box">CSS Animation</div>
+                        <div class="animation-controls">
+                            <button id="toggle-animation-btn" class="reset-button">■ アニメーション停止</button>
+                            <button id="reset-animation-btn" class="reset-button">↻ リセット</button>
+                            <button id="speed-up-btn" class="reset-button">↑ 速度アップ</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**`animation-play-state`**: CSSのこのプロパティをJavaScriptで `paused` や `running` に切り替えることで、アニメーションを制御します。</li>
-                    <li>**`getComputedStyle()`**: 現在要素に適用されているCSSの値（ここではアニメーション速度）をJavaScriptから取得する方法を習得します。</li>
-                </ul>
-            </div>
-        </section>
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**`animation-play-state`**: CSSのこのプロパティをJavaScriptで `paused` や `running` に切り替えることで、アニメーションを制御します。</li>
+                        <li>**`getComputedStyle()`**: 現在要素に適用されているCSSの値（ここではアニメーション速度）をJavaScriptから取得する方法を習得します。</li>
+                    </ul>
+                </div>
+            </section>
 
-        <section class="js-work-section" data-category="UI/UX">
-            <h2>13. モーダルウィンドウの表示</h2>
-            <div class="feature-demo">
-                <p>下の写真をクリックするとモーダルで拡大表示されます。</p>
-                <div class="gallery">
-                    <div class="work-item" data-image="images/insta1.jpg" data-title="端午の節句の限定商品の紹介" data-concept="販売開始の告知及び予約方法をシンプルなデザインで端的に。">
-                        <img src="images/insta1.jpg" alt="インスタ投稿1" class="thumbnail">
-                    </div>
-                    <div class="work-item" data-image="images/insta2.jpg" data-title="ハロウィンイベント告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
-                        <img src="images/insta2.jpg" alt="インスタ投稿2" class="thumbnail">
-                    </div>
-                    <div class="work-item" data-image="images/insta3.jpg" data-title="閉店セール告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
-                        <img src="images/insta3.jpg" alt="インスタ投稿3" class="thumbnail">
-                    </div>
-                    <div class="work-item" data-image="images/insta4.jpg" data-title="新商品告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
-                        <img src="images/insta4.jpg" alt="インスタ投稿4" class="thumbnail">
+            <section class="js-work-section" data-category="UI/UX">
+                <h2>13. モーダルウィンドウの表示</h2>
+                <div class="feature-demo">
+                    <p>下の写真をクリックするとモーダルで拡大表示されます。</p>
+                    <div class="gallery">
+                        <div class="work-item" data-image="images/insta1.jpg" data-title="端午の節句の限定商品の紹介" data-concept="販売開始の告知及び予約方法をシンプルなデザインで端的に。">
+                            <img src="images/insta1.jpg" alt="インスタ投稿1" class="thumbnail">
+                        </div>
+                        <div class="work-item" data-image="images/insta2.jpg" data-title="ハロウィンイベント告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
+                            <img src="images/insta2.jpg" alt="インスタ投稿2" class="thumbnail">
+                        </div>
+                        <div class="work-item" data-image="images/insta3.jpg" data-title="閉店セール告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
+                            <img src="images/insta3.jpg" alt="インスタ投稿3" class="thumbnail">
+                        </div>
+                        <div class="work-item" data-image="images/insta4.jpg" data-title="新商品告知" data-concept="視認性の高さを最優先し、情報が伝わるデザインに注力。">
+                            <img src="images/insta4.jpg" alt="インスタ投稿4" class="thumbnail">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**`position: fixed`と`z-index`**: モーダルウィンドウを画面の最前面（`z-index: 1000`など）に固定し、他のコンテンツの上に重ねて表示します。</li>
-                    <li>**`display`プロパティの切り替え**: JavaScriptで、モーダル要素のCSS `display` プロパティを `none` (非表示) から `flex` (表示) に切り替えることで、モーダルの表示・非表示を制御しています。</li>
-                    <li>**DOM要素の動的設定**: クリックされた画像の `src` 属性を読み取り、モーダル内の画像要素（`modal-image`）の `src` にコピーすることで、**どの画像でも拡大表示**できるようにしています。</li>
-                    <li>**イベント伝播の利用**: モーダルウィンドウの背景部分をクリックした場合も、JavaScript側でそれを検知しモーダルを閉じる処理（**イベントバブリング/キャプチャリング**を利用した処理）を実装しています。</li>
-                    <li>**アクセシビリティ (`keydown`)**: **Escキー**を押すことでもモーダルが閉じられるように設定し、キーボード操作によるアクセシビリティを確保しています。</li>
-                </ul>
-            </div>
-        </section>
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**`position: fixed`と`z-index`**: モーダルウィンドウを画面の最前面（`z-index: 1000`など）に固定し、他のコンテンツの上に重ねて表示します。</li>
+                        <li>**`display`プロパティの切り替え**: JavaScriptで、モーダル要素のCSS `display` プロパティを `none` (非表示) から `flex` (表示) に切り替えることで、モーダルの表示・非表示を制御しています。</li>
+                        <li>**DOM要素の動的設定**: クリックされた画像の `src` 属性を読み取り、モーダル内の画像要素（`modal-image`）の `src` にコピーすることで、**どの画像でも拡大表示**できるようにしています。</li>
+                        <li>**イベント伝播の利用**: モーダルウィンドウの背景部分をクリックした場合も、JavaScript側でそれを検知しモーダルを閉じる処理（**イベントバブリング/キャプチャリング**を利用した処理）を実装しています。</li>
+                        <li>**アクセシビリティ (`keydown`)**: **Escキー**を押すことでもモーダルが閉じられるように設定し、キーボード操作によるアクセシビリティを確保しています。</li>
+                    </ul>
+                </div>
+            </section>
 
 
-        <section class="js-work-section" data-category="UI/UX">
-            <h2>14. データフィルタリング&ソート機能</h2>
-            <div class="feature-demo">
-                <p>カテゴリ別の絞り込みと表示順を変更できます。</p>
-            </div>
+            <section class="js-work-section" data-category="UI/UX">
+                <h2>14. データフィルタリング&ソート機能</h2>
+                <div class="feature-demo">
+                    <p>カテゴリ別の絞り込みと表示順を変更できます。</p>
+                </div>
+                
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**データ属性による分類**: 各作品セクションに **カスタムデータ属性** (`data-category`) を付与し、JavaScriptでその値を読み取ることで、作品の分類データをHTML側で管理しています。</li>
+                        <li>**フィルタリング (絞り込み)**: フィルターボタンがクリックされた際、対応するカテゴリーを持つ要素以外の CSS `display` プロパティを `none` に設定することで、表示/非表示を動的に切り替えています。</li>
+                        <li>**配列への変換**: `document.querySelectorAll()` で取得したDOM要素のリスト（`NodeList`）を、JavaScriptの **`Array.from()` メソッド**を使って操作しやすい配列 (`worksArray`) に変換しています。</li>
+                        <li>**DOMの再配置 (ソート)**: 並べ替えを行う際は、配列メソッド（`Array.prototype.reverse()`など）で**配列の順番を操作**した後、親要素（`main`タグ）に対して **`appendChild()`** を実行しています。</li>
+                        <li>**効率的なDOM操作**: 既存のDOM要素に対して `appendChild()` を行うと、要素は複製されず、親要素内での**位置が移動**する特性を利用しています。これにより、要素をすべて削除して作り直すよりも効率的に表示順を更新しています。</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <div id="js-back-content" class="works-tab-content" style="display:none;">
+            <h2>💻 Node.js API連携作品</h2>
+            <p>この作品は、Node.jsで構築したサーバー（Express）にJavaScriptからアクセスし、外部APIのデータを取得・表示しています。</p>
+            <p>Node.jsサーバーが動作しているか確認するには、ブラウザで以下のURLにアクセスしてください。（ポート番号はご自身の設定に合わせてください）</p>
+            <p>確認用URL: <code>http://localhost:3001/api/users</code></p>
+
+            <iframe src="users.html" width="100%" height="500px" frameborder="0" id="node-iframe"></iframe>
             
-            <div class="tech-notes">
-                <h3>技術解説</h3>
-                <ul>
-                    <li>**データ属性による分類**: 各作品セクションに **カスタムデータ属性** (`data-category`) を付与し、JavaScriptでその値を読み取ることで、作品の分類データをHTML側で管理しています。</li>
-                    <li>**フィルタリング (絞り込み)**: フィルターボタンがクリックされた際、対応するカテゴリーを持つ要素以外の CSS `display` プロパティを `none` に設定することで、表示/非表示を動的に切り替えています。</li>
-                    <li>**配列への変換**: `document.querySelectorAll()` で取得したDOM要素のリスト（`NodeList`）を、JavaScriptの **`Array.from()` メソッド**を使って操作しやすい配列 (`worksArray`) に変換しています。</li>
-                    <li>**DOMの再配置 (ソート)**: 並べ替えを行う際は、配列メソッド（`Array.prototype.reverse()`など）で**配列の順番を操作**した後、親要素（`main`タグ）に対して **`appendChild()`** を実行しています。</li>
-                    <li>**効率的なDOM操作**: 既存のDOM要素に対して `appendChild()` を行うと、要素は複製されず、親要素内での**位置が移動**する特性を利用しています。これにより、要素をすべて削除して作り直すよりも効率的に表示順を更新しています。</li>
-                </ul>
-            </div>
-        </section>
-
+            <h3>技術要素</h3>
+            <ul>
+                <li>**Node.js / Express**: バックエンドサーバーの構築。</li>
+                <li>**APIルーティング**: `/api/users` エンドポイントの定義。</li>
+                <li>**外部API連携**: `axios` を用いたデータ取得。</li>
+                <li>**フロントエンド**: `fetch()` で自作APIを呼び出し、HTMLを動的生成。</li>
+            </ul>
+        </div>
     </main>
 
     <footer>

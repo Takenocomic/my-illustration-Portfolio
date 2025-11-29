@@ -76,6 +76,59 @@ function initFilterSort() {
 }
 
 
+// ------------------------------------------------
+// 15. タブ切り替え機能の実装 (Node.js/JS)
+// ------------------------------------------------
+function initWorksTabs() {
+    const tabButtons = document.querySelectorAll('.tabs .tab-button');
+    const frontContent = document.getElementById('js-front-content');
+    const backContent = document.getElementById('js-back-content');
+    const nodeIframe = document.getElementById('node-iframe');
+    // フロントエンド作品のセクションすべてを取得
+    const jsWorkSections = document.querySelectorAll('.js-work-section');
+
+    // 初期状態（CSSで制御するが、JSでも念のため）
+    if (frontContent) frontContent.style.display = 'block';
+    if (backContent) backContent.style.display ='none';
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+
+            // 1. ボタンのアクティブ状態を切り替える
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            // 2. コンテンツの表示/非表示を切り替える
+            if (targetTab === 'js-front') {
+                if (frontContent) frontContent.style.display = 'block';
+                if (backContent) backContent.style.display = 'none';
+                // フロントエンドに戻った際、フィルタリングの初期表示を再実行
+                if (typeof initFilterSort === 'function') {
+                    // initFilterSort関数内の updateDisplay関数などを直接呼び出せるならそれがベストですが、
+                    // ここでは簡単な方法として、全作品を表示状態に戻します。
+                    initFilterSort();
+                    // ※ initFilterSort() が初期化だけの場合は、手動で表示を block に戻す
+                    // jsWorkSections.forEach(section => section.style.display = 'block');
+                }
+            } else if (targetTab === 'js-back') {
+                if (frontContent) frontContent.style.display = 'none';
+                if (backContent) backContent.style.display = 'block';
+
+                // Node.jsに切り替えるとき、フロントエンドの全作品を明示的に非表示にする
+                jsWorkSections.forEach(section => {
+                    section.style.display = 'none'; 
+                });
+
+                // Node.jsタブに切り替えた際、iframeを再読み込みし、API通信を再トリガーする
+                if (nodeIframe) {
+                    nodeIframe.src = nodeIframe.src;
+                }
+            }
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
     // ------------------------------------------------
     // 1. ダークモード切り替え機能の実装 
@@ -647,4 +700,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if (document.querySelector('.filter-sort-controls')) {
         initFilterSort();
     }
+
+    // ★ ワークスタブを初期化 (最後に追加)
+    initWorksTabs();
 });
