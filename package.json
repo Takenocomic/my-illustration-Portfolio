@@ -4,7 +4,8 @@
   "description": "",
   "main": "js-works.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,8 @@
   },
   "homepage": "https://github.com/Takenocomic/my-illustration-Portfolio#readme",
   "dependencies": {
+    "axios": "^1.13.2",
+    "cors": "^2.8.5",
     "express": "^5.1.0"
   }
 }

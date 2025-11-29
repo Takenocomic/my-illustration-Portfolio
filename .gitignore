@@ -1,0 +1,4 @@
+# Node.js 関連の除外
+node_modules/
+npm-debug.log
+.DS_Store
