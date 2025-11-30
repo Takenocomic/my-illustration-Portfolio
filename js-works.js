@@ -9,6 +9,14 @@ function initFilterSort() {
 
     // NodeListを配列に変換（ソートや並べ替えに便利）
     const worksArray = Array.from(workSections);
+    // ★ 追記: 各作品にオリジナルのインデックスを付与する (リセットの基準とする)
+    // initFilterSortが何度実行されても、インデックスが二重に付与されないようチェック
+    worksArray.forEach((section, index) => {
+        if (!section.dataset.originalIndex) { 
+            // '0', '1', '2', ... という元の順番をHTML要素に保存
+            section.dataset.originalIndex = index;
+        }
+    });
 
     /**
     * 現在の並べ替え設定を適用し、DOMの表示順を更新する
@@ -26,16 +34,29 @@ function initFilterSort() {
 
         // 2. ソートの実行（表示要素/非表示要素の区別なく、全体をソートしてDOMを再配置）
         let sortedWorks = [...worksArray];
-        // 'desc' (降順/新しいものが上) の場合、配列を反転させる
-        if (sortValue === 'desc') {
-            sortedWorks.reverse();
-        }
-        // 'asc' (昇順/古いものが上) の場合は、worksArray の初期順序のままとする
 
-        // DOMの再配置: appendChild() の要素移動の特性を利用
+        sortedWorks.sort((a, b) => {
+            // ★ 修正: data-original-index を数値として比較基準にする
+            const indexA = parseInt(a.dataset.originalIndex);
+            const indexB = parseInt(b.dataset.originalIndex);
+
+            // 'asc' (昇順) なら indexA - indexB (小さい方が前)
+            if (sortValue === 'asc') {
+                return indexA - indexB;
+            } 
+            // 'desc' (降順) なら indexB - indexA (大きい方が前)
+            else if (sortValue === 'desc') {
+                return indexB - indexA;
+            }
+            return 0; // ソート指定がない場合はそのまま
+        });
+
+        // 3. DOMの再配置
+        // ソートされた順番で作品をコンテナに再配置する
         sortedWorks.forEach(section => {
             worksContainer.appendChild(section);
         });
+        // worksContainer.appendChild() は要素を移動させる特性があるため、これでDOMが更新されます。
     }
 
     // 初期表示の適用（初期ソート値を設定）
@@ -103,14 +124,31 @@ function initWorksTabs() {
             if (targetTab === 'js-front') {
                 if (frontContent) frontContent.style.display = 'block';
                 if (backContent) backContent.style.display = 'none';
-                // フロントエンドに戻った際、フィルタリングの初期表示を再実行
-                if (typeof initFilterSort === 'function') {
-                    // initFilterSort関数内の updateDisplay関数などを直接呼び出せるならそれがベストですが、
-                    // ここでは簡単な方法として、全作品を表示状態に戻します。
-                    initFilterSort();
-                    // ※ initFilterSort() が初期化だけの場合は、手動で表示を block に戻す
-                    // jsWorkSections.forEach(section => section.style.display = 'block');
+
+                // フィルタリングとソートの機能がある場合、リセット処理を実行
+                // A. フィルタリングボタンの状態をリセット
+                const allFilterButton = document.querySelector('.filter-buttons-group .filter-btn[data-filter="all"]');
+                const filterButtons = document.querySelectorAll('.filter-buttons-group .filter-btn');
+
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                if (allFilterButton) {
+                    allFilterButton.classList.add('active');
                 }
+
+                // B. ソートセレクタの状態をリセット (必要であれば)
+                const sortSeletor = document.getElementById('sort-selector');
+                if (sortSeletor) {
+                    sortSeletor.value = 'asc';
+                }
+
+                // C. フィルタリング機能の再実行
+                // 絞り込みの実行関数（updateDisplay）を呼び出すか、
+                // ページリロード時に実行される initFilterSort() を再実行する
+                if (typeof initFilterSort === 'function') {
+                    // initFilterSort を再実行すると、DOM操作もリセットされる
+                    initFilterSort();
+                }
+
             } else if (targetTab === 'js-back') {
                 if (frontContent) frontContent.style.display = 'none';
                 if (backContent) backContent.style.display = 'block';
