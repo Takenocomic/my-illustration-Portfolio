@@ -1,3 +1,17 @@
+/*
+ * ============================================
+ * 全体のリセットと基本スタイル
+ * ============================================
+ */
+:root {
+    /* ライトモードのメイン配色 (CSS変数で定義) */
+    --main-bg-color: #ffffff;
+    --main-text-color: #333333;
+    --section-bg-color: #f8f8f8;
+    --accent-color: #007bff;
+    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
 body {
     font-family: Arial, sans-serif;
     padding: 20px;
@@ -13,5 +27,120 @@ body {
     text-align: left;
 }
 .data-table th {
-    background-color: #f2f2f2;
+    background-color: var(--section-bg-color);
+}
+
+
+/* users-style.css の末尾に追加 */
+
+/* ToDoリストエリア全体のスタイル */
+.todo-list-area {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.todo-input-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#todo-input {
+    flex-grow: 1; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.todo-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.add-btn {
+    background-color: #007bff;
+    color: white;
+}
+.add-btn:hover {
+    background-color: #0056b3;
+}
+
+/* ToDoリストのスタイル */
+#todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-text {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+/* 完了状態のスタイル */
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #888;
+}
+.todo-item.completed {
+    background-color: #e6ffe6; /* 薄い緑 */
+}
+
+.todo-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.complete-btn {
+    background-color: #28a745; /* 緑色 */
+    color: white;
+    font-size: 0.8em;
+}
+.complete-btn:hover {
+    background-color: #1e7e34;
+}
+
+.delete-btn-style {
+    background-color: #dc3545; /* 赤色 */
+    color: white;
+    font-size: 0.8em;
+}
+.delete-btn-style:hover {
+    background-color: #bd2130;
+}
+
+.loading-message, .error-message {
+    padding: 10px;
+    text-align: center;
+    font-style: italic;
+    color: #666;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
 }
