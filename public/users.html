@@ -5,73 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Node.js API連携作品</title>
-    <link rel="stylesheet" href="nodestyle.css">
+    <link rel="stylesheet" href="users-style.css">
 </head>
 
 <body>
-    <h1>Node.js API連携作品 (外部ユーザーリスト)</h1>
-    <p>自作のNode.jsサーバー（/api/users）にJavaScriptからアクセスし、データを取得・表示しています。</p>
+     <section class="js-work-section">
+        <h2>1. ユーザーリスト</h2>
+         <p>自作のNode.jsサーバー（/api/users）にJavaScriptからアクセスし、データを取得・表示しています。</p>
+        <div id="loading-message">データ取得．．．</div>
+        <table id="user-table" class="data-table" style="display:none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名前 (Name)</th>
+                    <th>メールアドレス (Email)</th>
+                </tr>
+            </thead>
+            <tbody id="user-data">
+            </tbody>
+        </table>
+    </section>
 
-    <h2>ユーザーリスト</h2>
-    <div id="loading-message">データ取得．．．</div>
-    <table id="user-table" class="data-table" style="display:none;">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>名前 (Name)</th>
-                <th>メールアドレス (Email)</th>
-            </tr>
-        </thead>
-        <tbody id="user-data">
-        </tbody>
-    </table>
+     <section class="js-work-section">
+        <hr style="margin: 40px 0;">
 
-    <script>
-        // ここにAPIを呼び出すJavaScriptコードを記述します。
-        
-        // サーバーが動いているポート番号を使用してください (例: 3001)
-        const API_URL = 'http://localhost:3001/api/users';
+        <h2>2. 自作API ToDoリスト管理 (CRUDデモ)</h2>
+        <p>
+            Node.jsサーバー（<code>/api/todos</code>）の **GET / POST / DELETE / PATCH** APIと連携し、タスクの作成、表示、完了状態の切り替え、削除を行っています。
+        </p>
+        <div class="todo-list-area">
+            <div class="todo-input-area">
+                <input type="text" id="todo-input" class="text-input" placeholder="新しいタスクを入力してください">
+                <button id="add-todo-btn" class="todo-btn add-btn">タスクを追加 (POST)</button>
+            </div>
 
-        async function fetchUsers() {
-            const loading = document.getElementById('loading-message');
-            const table = document.getElementById('user-table');
-            const tableBody = document.getElementById('user-data');
+            <ul id="todo-list" class="simple-list">
+                <li id="todo-loading" class="loading-message">>APIからタスクを読み込み中...</li>
+            </ul>
+        </div>
+        <script src="users.js"></script>
+     </section>
 
-            try {
-                // 1. fetch()を使って自作のNode.js APIにアクセス
-                const response = await fetch(API_URL);
-
-                // 2. 応答をJSON形式で受け取る
-                const apiResult = await response.json();
-                
-                // エラーチェック（サーバー側で設定したstatus: "success"をチェック）
-                if (apiResult.status !== 'success') {
-                    tableBody.innerHTML = '<tr><td colspan="3">エラー: データを取得できませんでした。</td></tr>';
-                    return ;
-                }
-
-                // 3. 取得したデータ（apiResult.data）をループ処理
-                apiResult.data.forEach(user => {
-                    const row = tableBody.insertRow();// 新しい行を作成
-
-                    // 各セルにデータを挿入
-                    row.insertCell().textContent = user.id;
-                    row.insertCell().textContent = user.name;
-                    row.insertCell().textContent = user.email;
-                });
-
-                // 4. ローディングメッセージを消し、テーブルを表示
-                loading.style.display = 'none';
-                table.style.display = 'table';
-            } catch (error) {
-                // 通信エラー（サーバーが起動していないなど）が発生した場合
-                console.error("API呼び出しエラー:", error);
-                loading.textContent = 'API接続エラーが発生しました。サーバーが起動しているか確認してください。';
-                loading.style.color = 'red';
-            }
-        }
-
-        // ページが読み込まれたら関数を実行
-        fetchUsers();
-    </script>
+    
 </body>
