@@ -175,7 +175,8 @@ input.text-input:focus {
 
 /* 2. 文字数カウンター */
 .counter-display {
-    text-align: right;
+    display: inline-block;
+    float: right;
     margin: 10px 0 15px 0;
     font-size: 15px;
     color: #666;
@@ -448,6 +449,12 @@ input.text-input:focus {
 
 .work-item img.thumbnail:hover {
     transform: scale(1.05); /* ホバーで少し拡大するアニメーション */
+}
+
+
+/* 15. チェックボックス連動入力の制御*/
+#controlled-text-input:disabled {
+    background-color: rgba(255, 0, 0, 0.3);
 }
 
 /*
