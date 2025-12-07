@@ -95,10 +95,12 @@
 
                 <div class="text-counter-container">
                     <textarea id="text-input" class="text-input" rows="5" placeholder="ここに文字を入力してください．．．"></textarea>
+                    
+                    <button class="reset-button" data-target-id="text-input">入力内容をすべてリセット</button>
                     <p class="counter-display">
                         現在の文字数: <span id="char-count">0</span> 文字
                     </p>
-                    <button class="reset-button" data-target-id="text-input">入力内容をすべてリセット</button>
+                    
                 </div>
 
             </section>
@@ -373,6 +375,25 @@
                         <li>**配列への変換**: `document.querySelectorAll()` で取得したDOM要素のリスト（`NodeList`）を、JavaScriptの **`Array.from()` メソッド**を使って操作しやすい配列 (`worksArray`) に変換しています。</li>
                         <li>**DOMの再配置 (ソート)**: 並べ替えを行う際は、配列メソッド（`Array.prototype.reverse()`など）で**配列の順番を操作**した後、親要素（`main`タグ）に対して **`appendChild()`** を実行しています。</li>
                         <li>**効率的なDOM操作**: 既存のDOM要素に対して `appendChild()` を行うと、要素は複製されず、親要素内での**位置が移動**する特性を利用しています。これにより、要素をすべて削除して作り直すよりも効率的に表示順を更新しています。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="js-work-section" data-category="UI/UX">
+                <h2>15. チェックボックス連動入力の制御</h2>
+                <div class="feature-demo">
+                    <p>下のチェックボックスを**オン**にすると、テキストボックスへの入力が可能になります。</p>
+                    <input type="text" id="controlled-text-input" class="text-input" placeholder="チェックボックスをオンにしてください" disabled>
+
+                    <label for="enable-input-checkbox"> <input type="checkbox" id="enable-input-checkbox">入力受付を有効にする</label>
+                </div>
+                
+                <div class="tech-notes">
+                    <h3>技術解説</h3>
+                    <ul>
+                        <li>**`disabled`属性**: テキストボックスに初期状態で `disabled` 属性を設定し、入力不可の状態にします。</li>
+                        <li>**`change`イベント**: チェックボックスのチェック状態が変化したとき（`change` イベント）をJavaScriptで検知します。</li>
+                        <li>**プロパティの制御**: チェックボックスの `checked` プロパティの状態に基づいて、テキストボックスの `disabled` プロパティを `true` または `false` に切り替えます。</li>
                     </ul>
                 </div>
             </section>

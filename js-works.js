@@ -167,6 +167,7 @@ function initWorksTabs() {
     });
 }
 
+
 document.addEventListener('DOMContentLoaded',()=>{
     // ------------------------------------------------
     // 1. ダークモード切り替え機能の実装 
@@ -739,6 +740,40 @@ document.addEventListener('DOMContentLoaded',()=>{
         initFilterSort();
     }
 
+
+    // ------------------------------------------------
+    // 15. チェックボックス連動入力の制御
+    // ------------------------------------------------
+    const enableCheckbox = document.getElementById('enable-input-checkbox');
+    const controlledInput = document.getElementById('controlled-text-input');
+
+    if (enableCheckbox && controlledInput) {
+        // 状態を更新する共通関数を定義
+        function updateInputState() {
+            // チェックボックスがチェックされていれば (true)、disabled は false (有効) に
+            // チェックされていなければ (false)、disabled は true (無効) に
+            const isChecked = enableCheckbox.checked;
+
+            // controlledInput.disabled プロパティをチェック状態と同期させる
+            controlledInput.disabled = !isChecked;
+
+            // プレースホルダーテキストも更新
+            if (isChecked) {
+                controlledInput.placeholder = '文字を入力してください';
+            } else {
+                controlledInput.placeholder = 'チェックボックスをオンにしてください';
+            }
+        }
+
+        // A. チェックボックスの状態変更イベントリスナー
+        enableCheckbox.addEventListener('change', updateInputState);
+        
+        // B. ページロード時の初期状態を設定
+        updateInputState();
+    }
+
+
     // ★ ワークスタブを初期化 (最後に追加)
     initWorksTabs();
+
 });
