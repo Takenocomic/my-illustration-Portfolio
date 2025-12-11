@@ -6,6 +6,7 @@
     --main-bg-color: #ffffff;      /* メイン背景色（カード、ヘッダーなど） */
     --main-text-color: #333333;    /* メイン文字色 */
     --section-bg-color: #f8f8f8;   /* ページ全体の背景色（セクション外） */
+    --sub-bg-color: #e1e1e1;
     --accent-color: #007bff;       /* アクセントカラー (青) */
     --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.08); /* 影 */
 }
@@ -171,7 +172,7 @@ header {
     display: block;
     width: 20vh;
     padding: 10px 15px;
-    background-color: var(--section-bg-color);
+    background-color: var(--sub-bg-color);
     color: var(--main-text-color);
     text-align: center;
     text-decoration: none;
@@ -328,7 +329,7 @@ footer {
 }
 
 .tab-button {
-    background-color: #eee;
+    background-color: var(--sub-bg-color);
     color: #333;
     border: none;
     padding: 10px 20px;

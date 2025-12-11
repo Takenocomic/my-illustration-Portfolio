@@ -773,6 +773,46 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 
 
+    // ------------------------------------------------
+    // 16. スクロール進捗バー機能の実装 (新規追加)
+    // ------------------------------------------------
+    
+    // 実行する関数を定義
+    function updateScrollProgress() {
+        const progressBar = document.getElementById('scroll-progress-bar');
+        if (!progressBar) return;
+
+        // 1. ページの全長 (スクロール可能領域) を計算
+        // document.documentElement.scrollHeight: ドキュメント全体の高さ
+        // document.documentElement.clientHeight: ビューポート (画面) の高さ
+        // スクロール可能距離 = 全体の高さ - ビューポートの高さ
+        const totalHeigth = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+        // 2. 現在のスクロール位置を取得
+        // window.scrollY または document.documentElement.scrollTop
+        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+        // 3. スクロール率を計算 (0から100%)
+        let progressPercentage = 0;
+
+        if (totalHeigth > 0) {
+            progressPercentage = (scrollPosition / totalHeigth) * 100;
+        } else {
+            // スクロール可能距離が 0 の場合 (コンテンツが少ない場合)、100% と見なす
+            progressPercentage = 100;
+        }
+
+        // 4. スクロール率をバーの幅として設定
+        progressBar.style.width = progressPercentage + '%';
+    } 
+
+    // A. スクロールイベントを監視
+    // スクロールするたびに progressPercentage を再計算
+    window.addEventListener('scroll', updateScrollProgress);
+
+    // B. 初期状態を設定 (ページロード時にも一度実行して、ブラウザがスクロール位置を記憶していた場合に対応)
+    updateScrollProgress();
+
     // ★ ワークスタブを初期化 (最後に追加)
     initWorksTabs();
 

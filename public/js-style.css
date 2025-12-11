@@ -25,6 +25,25 @@
 
 }
 
+/*スクロール割合表示バー*/
+/* プログレスバー全体のコンテナ */
+#scroll-progress-bar-container{
+    background-color: #ccc;
+    position :fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    height: 4px;
+    width: 100%
+}
+
+/* 実際に伸びるラインの部分 */
+#scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--accent-color);
+    transition: background-color 0.3s ease;
+}
 
 /* 14. データフィルタリング・ソート機能 */
 .filter-sort-controls{
@@ -106,7 +125,7 @@
     padding-left: 15px;
     padding-right: 5%;
     margin: 20px 0;
-    background-color: #f0f0f0;
+    background-color: var(--section-bg-color);
     border-radius: 4px;
 }
 
